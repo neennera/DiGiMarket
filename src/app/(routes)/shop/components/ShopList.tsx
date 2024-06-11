@@ -9,7 +9,7 @@ interface itemSchema {
   name: string;
 }
 
-export async function getShop() {
+async function getShops() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_MOCKAPI_URL}/Shops`);
 
   if (!response.ok) {
@@ -24,7 +24,7 @@ export default function ShopList() {
   const [loading, setLoading] = useState(true);
   const initItems = async () => {
     try {
-      const res = await getShop();
+      const res = await getShops();
       setItems(res);
     } catch (error) {
       console.log(error);

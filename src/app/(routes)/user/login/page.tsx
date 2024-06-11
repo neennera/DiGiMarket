@@ -39,12 +39,14 @@ export default function Page() {
         </div>
       </form>
 
-      <div
-        className="w-[22vw] h-[40px] flex items-center text-black px-5 bg-red-400 mx-5 rounded-md"
-        id="loginErrorMessage"
-      >
-        {loginError}
-      </div>
+      {loginError != "" && (
+        <div
+          className="w-[22vw] h-[40px] flex items-center text-black px-5 bg-red-400 mx-5 rounded-md"
+          id="loginErrorMessage"
+        >
+          {loginError}
+        </div>
+      )}
     </section>
   );
 }
