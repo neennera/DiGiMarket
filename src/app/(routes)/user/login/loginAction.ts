@@ -1,6 +1,11 @@
-export async function login(prevState:any, formData:HTMLFormElement){
-    const username = formData.get('username')
-    const password = formData.get('password')
+'use server'
+export async function login(username:string, password:string){
     console.log(username, password);
-    
+    if(username === "" || password === ""){
+        return {"message" : "username and password is require"}
+    }
+    if(username!="neen"){
+        return {"message":"you not neen!!"}
+    }
+    return {"message" : "success"}
 }
