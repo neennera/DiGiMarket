@@ -44,7 +44,7 @@ export default function Page() {
         </fieldset>
         <div className="flex flex-row justify-between">
           <input
-            className="bg-blue-700 font-bold w-[120px] h-[35px] rounded-lg hover:bg-blue-900 cursor-pointer"
+            className="bg-blue-700 text-white font-bold w-[120px] h-[35px] rounded-lg hover:bg-blue-900 cursor-pointer"
             type="submit"
             value="login"
             onClick={handleLogin}
@@ -59,7 +59,7 @@ export default function Page() {
 
       {loginError != "" && (
         <div
-          className="w-[22vw] h-[40px] flex items-center text-black px-5 bg-red-400 mx-5 rounded-md"
+          className="w-[22vw] min-h-[40px] flex items-center text-black px-5 bg-red-400 mx-5 rounded-md"
           id="loginErrorMessage"
         >
           {loginError}
