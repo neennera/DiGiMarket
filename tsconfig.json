@@ -21,6 +21,13 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(routes)/shop/loading.ะห", "src/app/(routes)/shop/loading.ะห"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/(pages)/shop/loading.ะห",
+    "src/app/(pages)/shop/loading.ะห"
+  ],
   "exclude": ["node_modules"]
 }
