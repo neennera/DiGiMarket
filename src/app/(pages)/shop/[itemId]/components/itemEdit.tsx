@@ -33,6 +33,17 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
     }
   };
 
+  const handleDelete = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await axios.delete(`/api/products/${itemId}`);
+      router.push("/shop");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const initItem = async () => {
     try {
       const response = await axios.get(`/api/products/${itemId}`);
@@ -48,7 +59,7 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
   }, []);
   return (
     <section>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form className="space-y-6">
         <h1 className="text-3xl font-bold">
           <input
             type="text"
@@ -88,8 +99,19 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
           <button
             type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            onClick={(e) => {
+              handleSubmit(e);
+            }}
           >
             Submit
+          </button>
+          <button
+            onClick={(e) => {
+              handleDelete(e);
+            }}
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Delete
           </button>
         </fieldset>
       </form>
