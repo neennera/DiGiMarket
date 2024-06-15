@@ -1,22 +1,15 @@
 import Link from "next/link";
 import React from "react";
 import { useEffect, useState } from "react";
-
+import axios from "axios";
 import Loading from "@/components/Loading";
 
 interface itemSchema {
   id: number;
   name: string;
-}
-
-async function getShops() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_MOCKAPI_URL}/Shops`);
-
-  if (!response.ok) {
-    throw new Error("can not fetxh");
-  } else {
-    return response.json();
-  }
+  price: number;
+  description: string;
+  createdAt: Date;
 }
 
 export default function ShopList() {
@@ -24,10 +17,11 @@ export default function ShopList() {
   const [loading, setLoading] = useState(true);
   const initItems = async () => {
     try {
-      const res = await getShops();
-      setItems(res);
+      const response = await axios.get("/api/products");
+      setItems(response.data.data);
     } catch (error) {
       console.log(error);
+      setItems([]);
     } finally {
       setLoading(false);
     }
