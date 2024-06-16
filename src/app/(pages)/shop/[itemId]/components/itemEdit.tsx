@@ -19,13 +19,19 @@ export default function ItemEdit() {
     e.preventDefault();
 
     try {
-      await axios.put(`/api/products/${item.itemId}`, {
+      console.log(item);
+
+      const res = await axios.put(`/api/products/${item.id}`, {
         name,
         price: Number(price),
         description: desc,
         userId,
       });
-      router.push("/shop");
+      if (res.data.message == "fail") {
+        console.log("dail");
+      } else {
+        router.push("/shop");
+      }
     } catch (error) {
       console.error(error);
     }

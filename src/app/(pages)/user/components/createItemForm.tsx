@@ -26,8 +26,7 @@ const Create = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-6">Create a New Item</h1>
+    <div className="max-w-4xl">
       <form onSubmit={handleSubmit} className="space-y-6">
         <fieldset>
           <label className="block text-sm font-medium text-gray-700">

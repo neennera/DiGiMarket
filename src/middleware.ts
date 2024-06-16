@@ -9,21 +9,29 @@ export async function middleware(request: NextRequest) {
   try{
     const userToken = request.cookies.get('userToken')
     const url = request.nextUrl;
-
+    console.log(userToken);
+    
     const secretJWK ={
         kty:'oct',
         k:process.env.JOSE_SECRET
     }
     
-    if (url.pathname === '/login' && userToken != undefined) {
-      try {
+    if (url.pathname === '/login') {
+      if(userToken != undefined){
+        try {
         const secretKey = await importJWK(secretJWK, 'HS256');
         await jwtVerify(userToken.value, secretKey);
         return NextResponse.redirect(new URL("/", request.url));
       } catch (error) {
         return NextResponse.next();
       }
+      }else{
+        return NextResponse.next();
+
+      }
+      
     }
+
     
     if(userToken === undefined){
       throw new Error("user not login")
