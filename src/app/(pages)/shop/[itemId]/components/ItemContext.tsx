@@ -10,7 +10,7 @@ export interface itemSchema {
 }
 
 export const defaultItem: itemSchema = {
-  itemId: 0,
+  itemId: -1,
   name: "items name",
   description: "",
   price: 0,
