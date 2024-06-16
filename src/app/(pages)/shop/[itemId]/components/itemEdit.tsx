@@ -1,31 +1,29 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ItemContext } from "./ItemContext";
+import { getUserId } from "@/_assets/user";
 
-interface itemSchema {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  createdAt: Date;
-}
-
-export default function ItemEdit({ itemId }: { itemId: string }) {
-  const [item, setItem] = useState<itemSchema>();
+export default function ItemEdit() {
+  const item = useContext(ItemContext);
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+
+  const [userId, setUserId] = useState<Number | null>(null);
+
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      await axios.put(`/api/products/${itemId}`, {
+      await axios.put(`/api/products/${item.itemId}`, {
         name,
         price: Number(price),
         description: desc,
+        userId,
       });
       router.push("/shop");
     } catch (error) {
@@ -37,7 +35,7 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
     e.preventDefault();
 
     try {
-      await axios.delete(`/api/products/${itemId}`);
+      await axios.delete(`/api/products/${item.itemId}`);
       router.push("/shop");
     } catch (error) {
       console.error(error);
@@ -46,10 +44,11 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
 
   const initItem = async () => {
     try {
-      const response = await axios.get(`/api/products/${itemId}`);
-      setName(response.data.data.name);
-      setPrice(response.data.data.price);
-      setDesc(response.data.data.description);
+      setName(item.name);
+      setPrice(item.price);
+      setDesc(item.description);
+      const response = await getUserId();
+      setUserId(Number(response));
     } catch (error: unknown) {
       console.log(error);
     }
@@ -57,6 +56,7 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
   useEffect(() => {
     initItem();
   }, []);
+
   return (
     <section>
       <form className="space-y-6 w-[50vw] justify-start">
@@ -112,7 +112,7 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
             }}
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Delete
+            Delete this Item
           </button>
         </div>
       </form>

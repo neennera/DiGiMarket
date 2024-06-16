@@ -1,6 +1,8 @@
 import { getUserId } from "@/_assets/user";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ItemContext } from "./ItemContext";
+
 interface itemSchema {
   id: number;
   name: string;
@@ -21,6 +23,8 @@ export default function EditButton({
   setIsEdit,
   itemId,
 }: paramsSchema) {
+  const item = useContext(ItemContext);
+
   const [userId, setUserId] = useState<Number | null>(null);
   const initItem = async () => {
     try {
@@ -34,14 +38,18 @@ export default function EditButton({
     initItem();
   }, []);
 
-  return (
-    <>
-      <button
-        onClick={() => setIsEdit(!isEdit)}
-        className="h-10 px-4 py-2 ml-4 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-      >
-        {isEdit ? "Cancel" : "Edit"}
-      </button>
-    </>
-  );
+  if (userId == item.userId) {
+    return (
+      <>
+        <button
+          onClick={() => setIsEdit(!isEdit)}
+          className="h-10 px-4 py-2 ml-4 shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+        >
+          {isEdit ? "Cancel" : "Edit"}
+        </button>
+      </>
+    );
+  } else {
+    return <></>;
+  }
 }
