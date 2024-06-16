@@ -59,8 +59,9 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
   }, []);
   return (
     <section>
-      <form className="space-y-6">
-        <h1 className="text-3xl font-bold">
+      <form className="space-y-6 w-[50vw] justify-start">
+        <div className="flex flex-row space-x-2 w-full">
+          <h1 className="text-3xl font-bold w-[20%]">Name :</h1>
           <input
             type="text"
             name="name"
@@ -68,11 +69,11 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 text-3xl block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           />
-        </h1>
-        <p className="text-xl">
-          Price :{" "}
+        </div>
+        <div className="flex flex-row space-x-2 w-full">
+          <p className="text-xl w-[20%]">Price : </p>
           <input
             type="text"
             name="price"
@@ -80,11 +81,11 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
             required
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           />
-        </p>
-        <p className="text-xl">
-          Description :{" "}
+        </div>
+        <div className="flex flex-row space-x-2">
+          <p className="text-xl w-[20%]">Description : </p>
           <textarea
             name="desc"
             id="desc"
@@ -92,10 +93,10 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
             rows={4}
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           ></textarea>
-        </p>
-        <fieldset>
+        </div>
+        <div className="w-full flex justify-between px-[35%]">
           <button
             type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -113,7 +114,7 @@ export default function ItemEdit({ itemId }: { itemId: string }) {
           >
             Delete
           </button>
-        </fieldset>
+        </div>
       </form>
     </section>
   );

@@ -1,4 +1,30 @@
-<<<<<<< HEAD
+# About Project
+
+This is digital product marketplace website. User can shop item that shop put on sale.
+
+### What is digital product
+
+A product that based on digital technology, existing in a non-physica form. This website focus with study relate product like digital planner, sticker, digital post-it etc.
+
+## **Feature**
+
+### User
+
+    - Searching items from name & catergory
+    - add items to cart
+    - complete the check-out process
+    - gmail notification for recipe (phase 2)
+
+### Seller
+
+    - Register a shop, by upgrading from user account
+    - create a item with detail
+    - tracking an order
+    - create giveaway event (free item for promotion)
+    - gmail notification for order (phase 2)
+
+# About Development
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -35,6 +61,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-=======
-# FloatMarket
->>>>>>> fbd740842c0d28a0828e163dc171f128c2284483
