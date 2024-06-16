@@ -5,11 +5,16 @@ import { useContext, useEffect, useState } from "react";
 import { ItemContext } from "./ItemContext";
 import { getUserId } from "@/_assets/user";
 
-export default function ItemEdit() {
+export default function ItemEdit({
+  setIsEdit,
+}: {
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const item = useContext(ItemContext);
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState(0);
+  const [isDelete, setIsDelete] = useState(false);
 
   const [userId, setUserId] = useState<Number | null>(null);
 
@@ -19,29 +24,27 @@ export default function ItemEdit() {
     e.preventDefault();
 
     try {
-      console.log(item);
-
       const res = await axios.put(`/api/products/${item.id}`, {
         name,
         price: Number(price),
         description: desc,
         userId,
       });
-      if (res.data.message == "fail") {
-        console.log("dail");
-      } else {
-        router.push("/shop");
-      }
+      setIsEdit(false);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleDelete = async (e: React.FormEvent) => {
+  const deleteItem = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      await axios.delete(`/api/products/${item.itemId}`);
+      const res = await axios.delete(`/api/products/${item.id}`, {
+        data: { userId },
+      });
+      console.log(res.data);
+
       router.push("/shop");
     } catch (error) {
       console.error(error);
@@ -64,10 +67,40 @@ export default function ItemEdit() {
   }, []);
 
   return (
-    <section>
+    <section className="relative">
+      {isDelete && (
+        <div className="flex flex-col items-center space-y-1 justify-center absolute w-[100%] h-full bg-slate-900">
+          <div className="text-2xl font-bold">
+            Confirm to <span className="underline">Delete</span> Item
+          </div>
+          <div className="text-lg italic">
+            your item's data will lost after delete
+          </div>
+
+          <div className="space-x-3">
+            <button
+              onClick={(e) => {
+                deleteItem(e);
+              }}
+              className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white border-transparent bg-red-500 border hover:bg-red-500 hover:text-black"
+            >
+              Confirm Delete
+            </button>
+            <button
+              onClick={(e) => {
+                setIsDelete(false);
+              }}
+              className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white border-red-500 border hover:bg-red-500 hover:text-black"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       <form className="space-y-6 w-[50vw] justify-start">
         <div className="flex flex-row space-x-2 w-full">
-          <h1 className="text-3xl font-bold w-[20%]">Name :</h1>
+          <h1 className="text-3xl font-bold w-[20%]">Name</h1>
           <input
             type="text"
             name="name"
@@ -75,11 +108,11 @@ export default function ItemEdit() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 text-3xl block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
+            className="mt-1 text-3xl block w-[92%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
           />
         </div>
         <div className="flex flex-row space-x-2 w-full">
-          <p className="text-xl w-[20%]">Price : </p>
+          <p className="text-xl w-[20%]">Price </p>
           <input
             type="text"
             name="price"
@@ -87,11 +120,11 @@ export default function ItemEdit() {
             required
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
+            className="mt-1 block w-[92%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
           />
         </div>
         <div className="flex flex-row space-x-2">
-          <p className="text-xl w-[20%]">Description : </p>
+          <p className="text-xl w-[20%]">Description </p>
           <textarea
             name="desc"
             id="desc"
@@ -99,24 +132,25 @@ export default function ItemEdit() {
             rows={4}
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
+            className="mt-1 block w-[92%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
           ></textarea>
         </div>
-        <div className="w-full flex justify-between px-[35%]">
+        <div className="w-full flex justify-end space-x-5">
           <button
             type="submit"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 "
             onClick={(e) => {
               handleSubmit(e);
             }}
           >
-            Submit
+            Save Change
           </button>
           <button
             onClick={(e) => {
-              handleDelete(e);
+              e.preventDefault();
+              setIsDelete(true);
             }}
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white border-red-500 border hover:bg-red-500 hover:text-black"
           >
             Delete this Item
           </button>

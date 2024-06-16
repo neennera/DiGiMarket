@@ -94,7 +94,7 @@ export async function DELETE(request: Request,  { params }: { params: { id: stri
         })
         return Response.json(
             {
-                'message' : 'success delete'
+                'message' : 'success'
             }
         )
     }
