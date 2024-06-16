@@ -1,0 +1,30 @@
+/ user
+    GET() : get all user infomation
+    POST() : create new user
+        - body : {username, password}
+
+    / login
+        POST() : login user
+            - body : {username, password}
+
+    / role
+        POST() : changing user role
+            - body : {userId, role}
+
+    / [id]
+        GET() : get user data
+        PUT() : update username/password
+            - body : {username, password}
+        DELETE() : delete account 
+
+/ products
+    GET() : get all product
+    POST() : create new product
+        - body : {name, price, description, userId, category}
+    
+    / [id]
+        GET() : get product data
+        POST() : update product date
+            - body : {name, price, description, userId, category}
+        DELETE() : delete product
+    

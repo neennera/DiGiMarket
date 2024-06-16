@@ -19,7 +19,7 @@ export async function POST(request: Request){
         const priceFloat = Number(price)  
         
         // check user account
-        const userOwner = await prisma.user.findUnique({where : {id: userId}})
+        const userOwner = await prisma.user.findUnique({where : {id: Number(userId)}})
         if(userOwner == null){
             throw new Error("no user account with this userId")
         }

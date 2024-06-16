@@ -31,7 +31,7 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
     try {
         const id = Number(params.id)    
         const {
-            name, price, description, userId
+            name, price, description, userId, category
         } = await request.json()
         const priceFloat = Number(price)    
 
@@ -42,8 +42,6 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
         if(itemData == null){
             throw new Error("no item with this item name")
         }
-
-        // [todo] : handle category in create
 
         if(itemData.userId != userId){
             throw new Error("this item is not belong to this user")
