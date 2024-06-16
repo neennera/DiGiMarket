@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getUserId } from "@/_assets/user";
+
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "THB",
@@ -19,13 +19,10 @@ interface itemSchema {
 
 export default function ItemDisplay({ itemId }: { itemId: string }) {
   const [item, setItem] = useState<itemSchema>();
-  const [userId, setUserId] = useState<Number | null>(null);
   const initItem = async () => {
     try {
       const response = await axios.get(`/api/products/${itemId}`);
       setItem(response.data.data);
-      const response2 = await getUserId();
-      setUserId(Number(response2));
     } catch (error: unknown) {
       console.log(error);
     }
