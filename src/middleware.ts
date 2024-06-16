@@ -9,7 +9,6 @@ export async function middleware(request: NextRequest) {
   try{
     const userToken = request.cookies.get('userToken')
     const url = request.nextUrl;
-    console.log(userToken);
     
     const secretJWK ={
         kty:'oct',

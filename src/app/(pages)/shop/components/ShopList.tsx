@@ -35,8 +35,8 @@ export default function ShopList() {
       <div className="grid gap-5 grid-cols-2 lg:grid-cols-4 w-full">
         {items.map((item: itemSchema) => (
           <Link key={item.id} href={`/shop/${item.id}`}>
-            <div className="bg-slate-200 relative rounded-md w-[240px] min-h-[180px] hover:bg-slate-300 text-black p-2">
-              <div className="bg-slate-400 w-full h-[80px]"></div>
+            <div className="bg-gray-200 relative rounded-md w-[240px] min-h-[180px] hover:bg-gray-300 text-black p-2">
+              <div className="bg-gray-400 w-full h-[80px]"></div>
               <p className="font-bold text-xl">{item.name}</p>
               <p className="text-md">{item.price}</p>
               <div className="flex flex-row space-x-2">

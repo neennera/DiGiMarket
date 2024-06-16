@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <div className="text-xl flex flex-col space-y-2 items-center justify-center text-white min-h-[200px] min-w-[400px]">
       <Spinner />
-      <span className="text-black animate-pulse">Loading...</span>
+      <span className="text-white animate-pulse">Loading...</span>
     </div>
   );
 }

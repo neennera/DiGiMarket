@@ -3,8 +3,10 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bottom-0 text-white items-start w-full h-[50px] bg-slate-900 flex flex-row px-10">
-      The Website made by XXXX
+    <footer className="bottom-0 text-white items-center justify-center w-full h-[100px] bg-primary-dark flex flex-row ">
+      The Website made by Naphat Serirak
+      <br />
+      For Education purpose only
     </footer>
   );
 }

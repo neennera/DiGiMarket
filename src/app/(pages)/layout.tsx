@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen`}>
+      <body className={`min-h-screen bg-slate-900 text-white`}>
         <Header />
         <div className="px-5 min-h-[calc(100vh-50px-50px)]">{children}</div>
         <Footer />

@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 
 export interface itemSchema {
-  itemId: number;
+  id: number;
   name: string;
   price: number;
   description: string;
@@ -10,7 +10,7 @@ export interface itemSchema {
 }
 
 export const defaultItem: itemSchema = {
-  itemId: -1,
+  id: -1,
   name: "items name",
   description: "",
   price: 0,

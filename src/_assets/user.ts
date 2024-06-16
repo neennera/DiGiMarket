@@ -9,15 +9,12 @@ export async function getUserId() {
         k:process.env.NEXT_PUBLIC_JOSE_SECRET
     }
 
-    const secretKey = await importJWK(secretJWK, 'HS256')
-    const {payload} = await jwtVerify(userToken, secretKey)    
-    return payload.userId
-}
-
-export async function getUserData() {
-    const userId = getUserId()
-    const response = await axios.get(`/api/user/${userId}`)
-    console.log(response);
+    try{
+        const secretKey = await importJWK(secretJWK, 'HS256')
+        const {payload} = await jwtVerify(userToken, secretKey)    
+        return payload.userId
+    } catch (error:unknown){
+        return -1
+    }
     
-    return response.data.data
 }

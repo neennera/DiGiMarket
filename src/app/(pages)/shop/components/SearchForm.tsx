@@ -9,7 +9,7 @@ export default function SearchForm() {
   return (
     <form className="flex flex-row space-x-2">
       <input
-        className="text-black rounded-md"
+        className="text-white rounded-md"
         type="text"
         value={searchWord}
         name="name"

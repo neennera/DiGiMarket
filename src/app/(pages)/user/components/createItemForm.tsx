@@ -29,7 +29,7 @@ const Create = () => {
     <div className="max-w-4xl">
       <form onSubmit={handleSubmit} className="space-y-6">
         <fieldset>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-200">
             Item Name
           </label>
           <input
@@ -43,7 +43,7 @@ const Create = () => {
           />
         </fieldset>
         <fieldset>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-200">
             Item Price
           </label>
           <input
@@ -57,7 +57,7 @@ const Create = () => {
           />
         </fieldset>
         <fieldset>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm font-medium text-gray-200">
             Item Description
           </label>
           <textarea
@@ -73,7 +73,7 @@ const Create = () => {
         <fieldset>
           <button
             type="submit"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-whiterounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Submit
           </button>

@@ -64,7 +64,7 @@ export default function Page() {
 
       {loginError != "" && (
         <div
-          className="w-[22vw] min-h-[40px] flex items-center text-black px-5 bg-red-400 mx-5 rounded-md"
+          className="w-[22vw] min-h-[40px] flex items-center text-white px-5 bg-red-400 mx-5 rounded-md"
           id="loginErrorMessage"
         >
           {loginError}
