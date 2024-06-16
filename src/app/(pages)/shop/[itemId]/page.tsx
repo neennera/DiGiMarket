@@ -6,7 +6,7 @@ import ItemEdit from "./components/itemEdit";
 
 export default async function Page({ params }: { params: { itemId: string } }) {
   const [isEdit, setIsEdit] = useState(false);
-
+  const [canEdit, setCanEdit] = useState(false);
   return (
     <>
       <div className="m-auto p-2 flex flex-row justify-between">

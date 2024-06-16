@@ -4,12 +4,11 @@ import CreateItemForm from "./components/createItemForm";
 
 export default function Page() {
   const headerRequest = headers();
-  const user = JSON.parse(headerRequest.get("username"));
+  const userId = JSON.parse(headerRequest.get("userId"));
 
   return (
     <>
-      <h1 className="text-3xl">User has Login</h1>
-      {user?.username}
+      <h1 className="text-3xl">Hello {userId?.userId}</h1>
 
       <h2 className="text-2xl">Add new items</h2>
       <CreateItemForm />

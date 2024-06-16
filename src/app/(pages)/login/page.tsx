@@ -10,8 +10,13 @@ export default function Page() {
   const handleLogin = async (e: Event) => {
     e.preventDefault();
     const res = await login(username, password);
+    if (res == undefined) {
+      return;
+    }
     if (res.message != "success") {
       setLoginError(res.message);
+    } else {
+      setLoginError("");
     }
   };
 
