@@ -75,7 +75,7 @@ export default function ItemEdit() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 text-3xl block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 text-3xl block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
           />
         </div>
         <div className="flex flex-row space-x-2 w-full">
@@ -87,7 +87,7 @@ export default function ItemEdit() {
             required
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
           />
         </div>
         <div className="flex flex-row space-x-2">
@@ -99,7 +99,7 @@ export default function ItemEdit() {
             rows={4}
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-[60%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
           ></textarea>
         </div>
         <div className="w-full flex justify-between px-[35%]">

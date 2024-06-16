@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { headers } from "next/headers";
 import CreateItemForm from "./components/CreateItemForm";
 import RegisterPromote from "./components/RegisterPromote";
@@ -28,7 +28,7 @@ export default async function Page() {
           </div>
           <div id="newItem">
             <h1 className="text-2xl font-semibold mb-6">Create a New Item</h1>
-            <CreateItemForm />
+            <CreateItemForm userId={user.id} />
           </div>
         </div>
       </div>
