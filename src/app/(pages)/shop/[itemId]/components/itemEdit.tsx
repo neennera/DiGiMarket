@@ -21,17 +21,17 @@ export default function ItemEdit() {
     try {
       console.log(item);
 
-      const res = await axios.put(`/api/products/${item.itemId}`, {
+      const res = await axios.put(`/api/products/${item.id}`, {
         name,
         price: Number(price),
         description: desc,
         userId,
       });
-      console.log(res.data);
       if (res.data.message == "fail") {
-        console.log();
+        console.log("dail");
+      } else {
+        router.push("/shop");
       }
-      // router.push("/shop");
     } catch (error) {
       console.error(error);
     }
