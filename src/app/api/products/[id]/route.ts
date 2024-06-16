@@ -31,11 +31,27 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
     try {
         const id = Number(params.id)    
         const {
-            name, price, description
+            name, price, description, userId
         } = await request.json()
         const priceFloat = Number(price)    
 
-        const datas = await prisma.products.update({
+        const itemData = await prisma.products.findUnique({
+            where :{ id },
+        })
+
+        if(itemData == null){
+            throw new Error("no item with this item name")
+        }
+
+        // [todo] : handle category in create
+
+        if(itemData.userId != userId){
+            throw new Error("this item is not belong to this user")
+        }
+
+        // [todo] : handle category in update
+
+        await prisma.products.update({
             where :{ id },
             data : {
                 name, price:priceFloat , description
@@ -44,7 +60,6 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
         return Response.json(
             {
                 'message' : 'success',
-                'data' : datas
             }
         )
         }
@@ -59,6 +74,21 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
 export async function DELETE(request: Request,  { params }: { params: { id: string } }){   
     try {
         const id = Number(params.id)  
+        const {
+            userId
+        } = await request.json()
+        const itemData = await prisma.products.findUnique({
+            where :{ id },
+        })
+
+        if(itemData == null){
+            throw new Error("no item with this item name")
+        }
+
+        if(itemData.userId != userId){
+            throw new Error("this item is not belong to this user")
+        }
+
         const datas = await prisma.products.delete({
             where :{
                 id
@@ -66,14 +96,19 @@ export async function DELETE(request: Request,  { params }: { params: { id: stri
         })
         return Response.json(
             {
-                'message' : 'success'
+                'message' : 'success delete'
             }
         )
+    }
+    catch (error : Error | unknown){
+        let errorMessage = ""
+        if(error instanceof Error){
+            errorMessage = error.message
         }
-    catch(error:unknown){
+        
         return Response.json({
             "message" : "fail",
-            "error" : error
+            "error" : errorMessage
         })
     }
 }
