@@ -4,7 +4,7 @@ import { getUserId } from '@/_assets/user';
 const handleSwitchRole = async (role: string) => {
   const userId = await getUserId();
   try {
-    const res = await axios.post(`/api/user/role/${userId}`, {
+    const res = await axios.post(`/api/user/role`, {
       userId,
       role,
     });

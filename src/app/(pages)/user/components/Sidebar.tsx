@@ -1,6 +1,9 @@
-export default function Sidebar() {
+// 'use server';
+// import Cookies from 'js-cookie';
+
+export default async function Sidebar() {
   return (
-    <div className='sticky top-[10vh] h-full w-full sm:w-[20vw]'>
+    <div className='sticky top-[10vh] h-[80vh] w-full sm:w-[20vw]'>
       <h2 className='text-2xl font-semibold'>Index</h2>
       <div className='mt-2 flex flex-col space-y-2 pl-3'>
         <a href='#userInfo'>
@@ -21,6 +24,15 @@ export default function Sidebar() {
           </a>
         </div>
       </div>
+      <button
+        // onClick={(e) => {
+        //   Cookies.remove('userToken');
+        //   window.location.href = '/login';
+        // }}
+        className='absolute bottom-3 mt-10 h-[40px] w-[200px] rounded-lg border border-primary-dark hover:bg-primary-dark'
+      >
+        Logout
+      </button>
     </div>
   );
 }
