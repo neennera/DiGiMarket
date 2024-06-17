@@ -20,7 +20,9 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`min-h-screen bg-slate-900 text-white`}>
         <Header />
-        <div className='min-h-[calc(100vh-50px-150px)] px-5'>{children}</div>
+        <div className='relative top-[50px] min-h-[calc(100vh-50px-170px)] px-5'>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

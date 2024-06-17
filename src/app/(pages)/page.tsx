@@ -10,8 +10,8 @@ export default function Home() {
   const scrollingContent = [...messages, ...messages, ...messages];
 
   return (
-    <main className='flex flex-col items-center justify-between overflow-hidden p-24'>
-      <div className='flex h-[90vh] flex-col items-center justify-center sm:h-[80vh]'>
+    <main className='flex flex-col items-center justify-between overflow-hidden px-24'>
+      <div className='flex flex-col items-center justify-center sm:h-[80vh]'>
         <h1 className='font-abril text-[5rem] font-bold lg:text-[6.8rem]'>
           DiGi Market
         </h1>
@@ -31,7 +31,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className='absolute -z-20 mt-16 h-full w-full overflow-hidden'>
+        <div className='absolute -z-20 mt-8 h-screen w-full overflow-hidden'>
           <div className='absolute -left-[15vw] bottom-[22vh] flex h-[35px] w-[150vw] rotate-[-2deg] transform items-center justify-center space-x-5 rounded-xl bg-primary-dark text-center'>
             {scrollingContent.map((message: string, index: number) => (
               <div
