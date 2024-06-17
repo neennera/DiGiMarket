@@ -12,7 +12,7 @@ export default async function Header() {
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
     );
     const user = res.data.data;
-    username = user.username;
+    username = `Hi, ${user.username}`;
   } catch (error: unknown) {
     username = 'Login';
   }
@@ -32,6 +32,10 @@ export default async function Header() {
         <div className='flex flex-row space-x-5'>
           <Link href='/shop'>
             <p>Shops</p>
+          </Link>
+
+          <Link href='/about'>
+            <p>About</p>
           </Link>
           <Link href='/cart'>
             <p>My Cart</p>

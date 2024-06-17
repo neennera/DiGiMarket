@@ -17,10 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' className='sm:scroll-smooth'>
       <body className={`min-h-screen bg-slate-900 text-white`}>
         <Header />
-        <div className='relative top-[50px] min-h-[calc(100vh-50px-170px)] px-5'>
+        <div className='relative top-[50px] min-h-[calc(100vh-50px-170px)] p-10'>
           {children}
         </div>
         <Footer />

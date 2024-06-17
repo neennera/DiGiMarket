@@ -47,11 +47,11 @@ export default function Home() {
       </div>
 
       {/* Testimonials Section */}
-      <section className='py-20'>
+      <section className='py-10'>
         <div className='mx-auto flex min-h-[85vh] flex-col items-center justify-center text-center'>
           <h2 className='mb-8 text-3xl font-bold'>What Our Users Say</h2>
           <div className='grid grid-cols-1 gap-8 text-black md:grid-cols-3'>
-            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md'>
+            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md shadow-slate-400'>
               <p className='mb-4'>
                 "DiGi Market has transformed the way I sell my digital products.
                 The platform is user-friendly and my sales have increased
@@ -59,14 +59,14 @@ export default function Home() {
               </p>
               <div className='font-bold'>- Alice Johnson</div>
             </div>
-            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md'>
+            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md shadow-slate-400'>
               <p className='mb-4'>
                 "I love how easy it is to find high-quality digital products on
                 DiGi Market. It's my go-to marketplace for all things digital."
               </p>
               <div className='font-bold'>- Mark Smith</div>
             </div>
-            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md'>
+            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md shadow-slate-400'>
               <p className='mb-4'>
                 "The support team at DiGi Market is fantastic! They helped me
                 set up my shop and provided valuable tips to boost my sales."
@@ -78,7 +78,7 @@ export default function Home() {
       </section>
 
       {/* Shop Registration Section */}
-      <section className='rounded-lg bg-gray-100 bg-opacity-10 px-3 py-20 text-white'>
+      <section className='mb-10 rounded-lg bg-gray-100 bg-opacity-10 px-3 py-20 text-white'>
         <div className='container mx-auto w-[70vw] items-start pl-10 text-start'>
           <h2 className='mb-8 text-center text-3xl font-bold'>
             Become a DiGi Market Seller 🛍️
