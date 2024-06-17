@@ -1,13 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 
-export interface PurchaseHistoryItem {
+export interface SaleHistoryItem {
   productName: string;
   buyAt: Date;
   downloadLink: string;
 }
 
-export const purchaseHistory: PurchaseHistoryItem[] = [
+export const saleHistory: SaleHistoryItem[] = [
   {
     productName: 'Product 1',
     buyAt: new Date('2023-01-01'),
@@ -20,8 +20,8 @@ export const purchaseHistory: PurchaseHistoryItem[] = [
   },
 ];
 
-interface PurchaseHistoryProps {
-  purchaseHistory: PurchaseHistoryItem[];
+interface SaleHistoryProps {
+  SaleHistory: SaleHistoryItem[];
 }
 
 const ITEMS_PER_PAGE = 10;
@@ -34,20 +34,20 @@ const formatDate = (date: Date): string => {
   });
 };
 
-const PurchaseHistory = () => {
+const SaleHistory = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = purchaseHistory.slice(
+  const currentItems = saleHistory.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
 
-  const totalPages = Math.ceil(purchaseHistory.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(saleHistory.length / ITEMS_PER_PAGE);
 
   return (
-    <div className='container mt-5'>
-      <h2 className='mb-4 text-2xl font-bold'>Purchase History</h2>
+    <div id='saleRecord' className='container mt-5 scroll-mt-[11vh]'>
+      <h2 className='mb-4 text-2xl font-bold'>Sale History</h2>
       <table className='min-w-full rounded-lg bg-white text-black'>
         <thead>
           <tr>
@@ -89,4 +89,4 @@ const PurchaseHistory = () => {
   );
 };
 
-export default PurchaseHistory;
+export default SaleHistory;

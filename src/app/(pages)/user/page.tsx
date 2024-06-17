@@ -5,6 +5,7 @@ import RoleManage from './components/RoleManage';
 import Sidebar from './components/Sidebar';
 import PurchaseHistory from './components/PurchaseHistory';
 import axios from 'axios';
+import SaleHistory from './components/SaleHistory';
 
 const formatDate = (date: Date): string => {
   return date.toLocaleDateString('en-GB', {
@@ -45,6 +46,7 @@ export default async function Page() {
               <div className='mr-2 h-[50px] w-[8px] bg-white'></div>Shop
               Management
             </h1>
+            <SaleHistory />
             <div id='newItem' className='scroll-mt-[11vh]'>
               <h1 className='mb-6 text-2xl font-semibold'>Create a New Item</h1>
               <CreateItemForm userId={user.id} />
