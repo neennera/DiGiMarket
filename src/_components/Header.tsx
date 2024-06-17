@@ -1,22 +1,43 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React, { useState } from 'react';
+import { headers } from 'next/headers';
+import axios from 'axios';
 
-export default function Header() {
+export default async function Header() {
+  const headerRequest = headers();
+  const userId = JSON.parse(headerRequest.get('userId'));
+  let username = 'Login';
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
+    );
+    const user = res.data.data;
+    username = user.username;
+  } catch (error: unknown) {
+    username = 'Login';
+  }
+
   return (
     <nav>
-      <div className="items-center text-black bg-primary text-md font-semibold justify-between w-full py-4 sticky top-0 backdrop-blur-md flex flex-row px-5">
-        <div className="text-2xl font-abril font-semibold">
-          <Link href="/">DiGi Market</Link>
+      <div className='text-md shadow-bl fixed left-1/2 top-2 z-50 flex h-[50px] w-[90vw] -translate-x-1/2 transform flex-row items-center justify-between self-center rounded-full bg-primary bg-opacity-80 px-5 py-3 font-semibold text-black shadow-lg shadow-sky-800 backdrop-blur-sm'>
+        <div className='font-abril text-2xl font-semibold'>
+          <Link href='/'>DiGi Market</Link>
         </div>
-        <div className="flex flex-row space-x-5">
-          <Link href="/shop">
+        <div className='flex flex-row space-x-5'>
+          <input className='h-[30px] w-[30vw] rounded-md bg-white'></input>
+          <div className='flex cursor-pointer items-center justify-center rounded-md bg-primary-dark px-3 text-white'>
+            Search
+          </div>
+        </div>
+        <div className='flex flex-row space-x-5'>
+          <Link href='/shop'>
             <p>Shops</p>
           </Link>
-          <Link href="/cart">
+          <Link href='/cart'>
             <p>My Cart</p>
           </Link>
-          <Link href="/user">
-            <p>User</p>
+          <Link href='/user'>
+            <p className='font-bold'>{username}</p>
           </Link>
         </div>
       </div>
