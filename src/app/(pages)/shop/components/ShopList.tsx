@@ -44,7 +44,10 @@ export default function ShopList() {
     <>
       {loading && <Loading />}
       {category.map((item: categorySchema) => (
-        <p>{item.itemCategory}</p>
+        <div>
+          <p>{item.itemCategory}</p>
+          <p>{item.color}</p>
+        </div>
       ))}
       <div className='grid-col-1 grid w-full gap-5 sm:grid-cols-2 lg:grid-cols-4'>
         {items.map((item: itemSchema) => (
