@@ -38,6 +38,32 @@ export async function POST(request: Request){
     }
 }
 
+export async function PUT(request: Request){
+    try{
+       const {
+        oldId, newId, itemCategory
+    } = await request.json()
+    
+    const data = await prisma.itemCategory.update({where :{ id: oldId },
+        data : {
+            id:newId, itemCategory
+        }})
+    return Response.json(
+        {
+            'message' : 'success',
+            'data' : data
+        }
+    ) 
+    }catch(error:unknown){
+        return Response.json(
+            {
+                'message' : 'fail',
+                'error' : error
+            }
+        )
+    }
+}
+
 export async function DELETE(request: Request){
     try{
        const {
