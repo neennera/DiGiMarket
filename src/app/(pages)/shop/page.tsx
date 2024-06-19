@@ -8,14 +8,17 @@ export default function Page() {
   return (
     <section>
       <div className='flex flex-row p-5'>
-        <div className='h-full w-[25vw]'>
+        <div className='h-full w-[25vw] max-sm:hidden'>
           <SideBar />
         </div>
         <div className='w-[70vw] space-y-5'>
-          <h1 className='text-3xl font-bold'>Our Shops</h1>
-          <div className='flex flex-row space-x-2'>
-            <h2>Searching a shop </h2>
+          <h1 className='text-4xl font-bold'>Our Shops</h1>
+          <div className='flex flex-col sm:flex-row sm:space-x-2'>
+            <p className='text-xl'>Searching a shop </p>
             <SearchForm />
+          </div>
+          <div className='block sm:hidden'>
+            <SideBar />
           </div>
           <ShopList />
         </div>
