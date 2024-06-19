@@ -16,6 +16,7 @@ datasource db {
 model ItemCategory {
   id           Int        @id @default(autoincrement())
   itemCategory String     @unique
+  color        String     @default("#CCCCCC")
   products     Products[]
 }
 
