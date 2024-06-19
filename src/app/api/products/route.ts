@@ -27,11 +27,17 @@ export async function POST(request: Request){
             throw new Error("user is not regiuster as shop")
         }
 
-        // [todo] : handle category in create
+        // handle category in create
+        const catCheck = await prisma.itemCategory.findUnique({
+            where : {id:category}
+        })
+        if(catCheck == null){
+            throw new Error("no category")
+        }
        
         const newProduct = await prisma.products.create({
             data : {
-                name, price : priceFloat, description, userId: Number(userId)
+                name, price : priceFloat, description, userId: Number(userId), categoryId : Number(category)
             }
         }) 
         return Response.json({

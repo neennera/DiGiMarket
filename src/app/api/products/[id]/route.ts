@@ -46,16 +46,17 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
         if(itemData.userId != userId){
             throw new Error("this item is not belong to this user")
         }
-
-        // [todo] : handle category in update
-
-        console.log(category);
-        
+        const catCheck = await prisma.itemCategory.findUnique({
+            where : {id:category}
+        })
+        if(catCheck == null){
+            throw new Error("no category")
+        }
         
         await prisma.products.update({
             where :{ id },
             data : {
-                name, price:priceFloat , description, category
+                name, price:priceFloat , description, categoryId : Number(category)
             }
         })
         return Response.json(
