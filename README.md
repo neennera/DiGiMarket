@@ -23,6 +23,31 @@ A product that based on digital technology, existing in a non-physica form. This
     - create giveaway event (free item for promotion)
     - gmail notification for order (phase 2)
 
+# Plans
+
+(phase 1 : mockup market place)
+
+- create account & login (done)
+- create item & edit item if you are owner (done)
+- landing UI (done)
+- role promote from customer to shop (done)
+- implement item category & category search
+- image photo base on category
+- implement logout button
+- navbar quick search
+
+(phase 2)
+
+- implement cart
+- implement checkout process
+- write about project page
+
+(phase 3)
+
+- better item management page
+- upload product image
+- history record
+
 # About Development
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

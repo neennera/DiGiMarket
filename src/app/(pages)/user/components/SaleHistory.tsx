@@ -48,6 +48,8 @@ const SaleHistory = () => {
   return (
     <div id='saleRecord' className='container mt-5 scroll-mt-[11vh]'>
       <h2 className='mb-4 text-2xl font-bold'>Sale History</h2>
+      <p className='text-lg italic'>This is not implement yet</p>
+
       <table className='min-w-full rounded-lg bg-white text-black'>
         <thead>
           <tr>

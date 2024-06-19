@@ -7,7 +7,11 @@ export default function Footer() {
       <div className='text-center'>
         <p className='text-lg font-semibold'>
           The Website made by{' '}
-          <a href='#' className='underline hover:text-indigo-200'>
+          <a
+            href='https://naphat-portfolio.vercel.app/'
+            target='_blank'
+            className='underline hover:text-indigo-200'
+          >
             Naphat Serirak
           </a>
         </p>
@@ -16,19 +20,22 @@ export default function Footer() {
       </div>
       <div className='mt-4'>
         <a
-          href='#'
+          href='https://www.linkedin.com/in/naphat-serirak/'
+          target='_blank'
           className='mx-2 text-sm text-indigo-200 hover:text-indigo-100 hover:underline'
         >
           Contact Me
         </a>
         <a
-          href='#'
+          href='https://github.com/neennera/DiGiMarket'
+          target='_blank'
           className='mx-2 text-sm text-indigo-200 hover:text-indigo-100 hover:underline'
         >
           Source Code
         </a>
         <a
           href='#'
+          target='_blank'
           className='mx-2 text-sm text-indigo-200 hover:text-indigo-100 hover:underline'
         >
           Demo

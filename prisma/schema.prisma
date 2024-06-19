@@ -24,7 +24,7 @@ model Products {
   name        String
   price       Float             @default(0)
   description String?
-  products    ProductCategory[]
+  categories  ProductCategory[]
   createdAt   DateTime          @default(now())
   Owner       User              @relation(fields: [userId], references: [id])
   userId      Int               @default(0)

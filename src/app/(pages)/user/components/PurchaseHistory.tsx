@@ -48,6 +48,7 @@ const PurchaseHistory = () => {
   return (
     <div className='container mt-5'>
       <h2 className='mb-4 text-2xl font-bold'>Purchase History</h2>
+      <p className='text-lg italic'>This is not implement yet</p>
       <table className='min-w-full rounded-lg bg-white text-black'>
         <thead>
           <tr>
