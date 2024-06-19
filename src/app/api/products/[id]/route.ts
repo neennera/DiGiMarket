@@ -49,10 +49,12 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
 
         // [todo] : handle category in update
 
+        console.log(category);
+        
         await prisma.products.update({
             where :{ id },
             data : {
-                name, price:priceFloat , description
+                name, price:priceFloat , description, category
             }
         })
         return Response.json(
