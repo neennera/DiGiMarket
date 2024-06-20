@@ -12,9 +12,8 @@ export default function Page() {
           <SideBar />
         </div>
         <div className='w-[70vw] space-y-5'>
-          <h1 className='text-4xl font-bold'>Our Shops</h1>
+          <h1 className='text-4xl font-bold'>Our Products</h1>
           <div className='flex flex-col sm:flex-row sm:space-x-2'>
-            <p className='text-xl'>Searching a shop </p>
             <SearchForm />
           </div>
           <div className='block sm:hidden'>

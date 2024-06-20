@@ -34,7 +34,7 @@ A product that based on digital technology, existing in a non-physica form. This
 - implement item category (done)
 - category search & category create
 - image photo base on category
-- implement logout button
+- implement logout button (done)
 - navbar quick search
 
 (phase 2)
