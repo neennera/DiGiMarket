@@ -31,7 +31,8 @@ A product that based on digital technology, existing in a non-physica form. This
 - create item & edit item if you are owner (done)
 - landing UI (done)
 - role promote from customer to shop (done)
-- implement item category & category search
+- implement item category (done)
+- category search & category create
 - image photo base on category
 - implement logout button
 - navbar quick search

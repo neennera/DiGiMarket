@@ -1,5 +1,10 @@
-// 'use server';
-// import Cookies from 'js-cookie';
+'use client';
+import Cookies from 'js-cookie';
+
+const handleLogout = () => {
+  Cookies.remove('userToken');
+  window.location.href = '/login';
+};
 
 export default async function Sidebar() {
   return (
@@ -25,10 +30,7 @@ export default async function Sidebar() {
         </div>
       </div>
       <button
-        // onClick={(e) => {
-        //   Cookies.remove('userToken');
-        //   window.location.href = '/login';
-        // }}
+        onClick={handleLogout}
         className='absolute bottom-3 mt-10 h-[40px] w-[200px] rounded-lg border border-primary-dark hover:bg-primary-dark'
       >
         Logout
