@@ -1,22 +1,45 @@
-"use client";
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { ItemContext } from "./ItemContext";
+'use client';
+import { useContext, useEffect, useState } from 'react';
+import { ItemContext } from './ItemContext';
+import { useSearchContext } from '../../components/searchContext';
+import Image from 'next/image';
 
-const formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "THB",
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'THB',
   minimumFractionDigits: 2,
 });
 
 export default function ItemDisplay() {
   const item = useContext(ItemContext);
+  const { categoryDisplay } = useSearchContext();
   return (
-    <div className="flex flex-col space-y-3">
-      <h1 className="text-3xl font-bold">{item?.name}</h1>
-      <div className="h-[300px] w-[80%] self-center bg-gray-500 rounded-lg drop-shadow-lg "></div>
-      <p className="text-xl">Price : {formatter.format(item.price)}</p>
-      <p className="text-xl">Description : {item?.description}</p>
+    <div className='flex flex-col space-y-3 px-5 py-3'>
+      <h1 className='text-3xl font-bold'>{item?.name}</h1>
+      <div className='flex w-full flex-col max-sm:space-y-5 sm:flex-row sm:space-x-10'>
+        <div className='flex h-[200px] w-full items-center justify-center self-center rounded-lg bg-gray-600 bg-opacity-40 py-4 sm:h-[300px] sm:w-[60%]'>
+          <Image
+            width={400}
+            height={400}
+            alt='product image'
+            src={categoryDisplay.categoryImage[Number(item.categoryId)]}
+            className='h-full object-fill'
+          ></Image>
+        </div>
+        <div className='mb-5 flex flex-col justify-between'>
+          <div className='space-y-2'>
+            <p className='text-xl'>Price : {formatter.format(item.price)}</p>
+            <p className='text-xl'>
+              Category : {categoryDisplay.categoryName[item?.categoryId]}
+            </p>
+            <p className='text-xl'>Description : {item?.description}</p>
+          </div>
+
+          <button className='mt-5 w-[90%] self-center rounded-md bg-primary py-2 font-semibold text-black hover:bg-primary-dark'>
+            Add to your cart
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
