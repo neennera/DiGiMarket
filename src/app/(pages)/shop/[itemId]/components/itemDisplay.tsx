@@ -24,6 +24,7 @@ export default function ItemDisplay() {
             alt='product image'
             src={categoryDisplay.categoryImage[Number(item.categoryId)]}
             className='h-full w-auto object-fill'
+            priority={true}
           ></Image>
         </div>
         <div className='mb-5 flex flex-col justify-between sm:w-[50%]'>

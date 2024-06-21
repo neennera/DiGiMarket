@@ -20,6 +20,7 @@ export default function SideBar() {
     data[category] = !data[category];
     setCategoryFilter(data);
   };
+
   const initItems = async () => {
     try {
       const response2 = await axios.get('/api/category');
@@ -69,7 +70,14 @@ export default function SideBar() {
               <input
                 className='h-[20px] w-[20px] rounded-lg bg-primary focus:ring-2 focus:ring-primary-dark'
                 type='checkbox'
-                checked={categoryFilter[itemCategory]}
+                checked={!!categoryFilter[itemCategory]}
+                onChange={(e) => {
+                  const isChecked = e.target.checked;
+                  setCategoryFilter((prevState) => ({
+                    ...prevState,
+                    [itemCategory]: isChecked,
+                  }));
+                }}
               ></input>
               <p>{itemCategory}</p>
             </button>

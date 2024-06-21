@@ -28,6 +28,7 @@ export default function ProductDisplay({ item }: { item: itemSchema }) {
                 alt='product image'
                 src={categoryDisplay.categoryImage[Number(item.categoryId)]}
                 className='h-full object-cover'
+                priority={true}
               ></Image>
               <div
                 className='absolute bottom-1 right-0.5 flex items-center justify-center rounded-lg px-1 py-0.5 font-semibold text-black opacity-80 group-hover:opacity-100'
