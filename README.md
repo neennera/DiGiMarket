@@ -32,21 +32,22 @@ A product that based on digital technology, existing in a non-physica form. This
 - landing UI (done)
 - role promote from customer to shop (done)
 - implement item category (done)
-- category search & category create
-- image photo base on category
+- category search & category create (done)
+- image photo base on category (done)
 - implement logout button (done)
-- navbar quick search
-
-(phase 2)
-
-- implement cart
-- implement checkout process
 - write about project page
 
-(phase 3)
+(phase 2 : Customizing)
 
-- better item management page
 - upload product image
+- implement cart
+- implement checkout process
+- recommed item
+
+(phase 3 : Extension)
+
+- review item
+- better item management page
 - history record
 
 # About Development

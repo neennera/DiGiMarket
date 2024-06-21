@@ -15,7 +15,7 @@ export default function ItemEdit({
   const [desc, setDesc] = useState('');
   const [price, setPrice] = useState(0);
   const [isDelete, setIsDelete] = useState(false);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(0);
   const [userId, setUserId] = useState<Number | null>(null);
 
   const router = useRouter();
@@ -32,6 +32,7 @@ export default function ItemEdit({
         userId,
         categoryId: category,
       });
+
       setIsEdit(false);
     } catch (error) {
       console.error(error);
@@ -53,7 +54,7 @@ export default function ItemEdit({
   };
 
   const handleChangeCat = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(event.target.value);
+    setCategory(Number(event.target.value));
   };
 
   const initItem = async () => {
@@ -61,7 +62,7 @@ export default function ItemEdit({
       setName(item.name);
       setPrice(item.price);
       setDesc(item.description);
-      setCategory(categoryDisplay.categoryName[item.categoryId]);
+      setCategory(item.categoryId);
       const response = await getUserId();
       setUserId(Number(response));
     } catch (error: unknown) {
@@ -103,7 +104,9 @@ export default function ItemEdit({
           </div>
         </div>
       )}
-
+      <p className='mb-4 text-lg italic text-primary'>
+        Edit mode : Click "Save Change" to confirm your edit
+      </p>
       <form className='w-[50vw] justify-start space-y-6'>
         <div className='flex w-full flex-row space-x-2'>
           <h1 className='w-[20%] text-3xl font-bold'>Name</h1>
@@ -137,6 +140,7 @@ export default function ItemEdit({
             name='category'
             className='mt-1 block h-full w-[92%] rounded-md py-1 text-black'
             onChange={handleChangeCat}
+            value={category}
           >
             {Object.entries(categoryDisplay.categoryName).map(
               ([itemCategory, color], index) => (

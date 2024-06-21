@@ -43,7 +43,7 @@ export default function ItemDisplay() {
             </p>
           </div>
 
-          <button className='mt-5 w-[90%] self-center rounded-md bg-primary py-2 font-semibold text-black hover:bg-primary-dark'>
+          <button className='mt-5 w-[90%] self-center rounded-md bg-primary py-2 font-semibold text-black transition-all hover:scale-105 hover:bg-primary-dark hover:text-white'>
             Add to your cart
           </button>
         </div>

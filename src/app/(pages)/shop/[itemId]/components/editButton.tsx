@@ -44,7 +44,7 @@ export default function EditButton({
       <>
         <button
           onClick={() => setIsEdit(!isEdit)}
-          className='ml-4 h-10 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700'
+          className='absolute right-5 top-5 h-10 rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700'
         >
           {isEdit ? 'Cancel' : 'Edit'}
         </button>
