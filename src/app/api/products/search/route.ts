@@ -10,7 +10,27 @@ export async function POST(request: Request){
         console.log(categoryFilter);
         console.log(sortBy);
         
+        let orderQuery = {}
+        if(sortBy === 'relavance'){
+            orderQuery = {}
+        }else if(sortBy === 'priceLow'){
+            orderQuery = {
+                  price: 'asc'
+              };
+        }else if(sortBy === 'priceHigh'){
+            orderQuery = {
+                    price : 'desc'
+            }
+        }
+        else if(sortBy === 'newest'){
+            orderQuery = {
+                    createdAt : 'desc',
+            }
+        }
+
+        console.log(orderQuery);
         
+
 
         const datas = await prisma.products.findMany({
             where : {
@@ -20,14 +40,17 @@ export async function POST(request: Request){
                 },
                 categoryId :{
                     in : categoryFilter
-                }
-            }
+                },
+            },
+            orderBy: orderQuery
         })
+
+
         return Response.json(
-            {
-                'message' : 'success',
-                'data' : datas
-            }
+        {
+            'message' : 'success',
+            'data' : datas
+        }
     )
     }catch(error:unknown){
         let errorMessage = ""
