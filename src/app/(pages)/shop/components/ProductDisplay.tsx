@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Loading from '@/_components/Loading';
-import { ItemCategory } from '@prisma/client';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import { useSearchContext } from './searchContext';
 
 interface itemSchema {
   id: number;
@@ -14,31 +12,13 @@ interface itemSchema {
   createdAt: Date;
   categoryId: number;
 }
-interface categorySchema {
-  id: number;
-  itemCategory: string;
-  color: string;
-}
 
-export default function ShopList(item: itemSchema) {
-  const [categoryColor, setCategoryColor] = useState<{ [key: number]: string }>(
-    {}
-  );
-  const [categoryName, setCategoryName] = useState<{ [key: number]: string }>(
-    {}
-  );
-  const [categoryImage, setCategoryImage] = useState<{ [key: number]: string }>(
-    {
-      0: '/productsImage/noCategory_mock.webp',
-      1: '/productsImage/postit_mock.jpg',
-      2: '/productsImage/planner_mock.jpg',
-      3: '/productsImage/sticker_mock.png',
-    }
-  );
+export default function ProductDisplay({ item }: { item: itemSchema }) {
+  const { categoryDisplay } = useSearchContext();
 
   return (
     <>
-      <div className='grid-col-1 grid w-full gap-5 sm:grid-cols-2 lg:grid-cols-4'>
+      <div className='grid-col-1 md:grid-col-3 grid w-full gap-5 sm:grid-cols-2 xl:grid-cols-4'>
         <Link key={item.id} href={`/shop/${item.id}`}>
           <div className='min-h-[180px] w-[240px] space-y-2 rounded-md bg-gray-200 p-2 text-black hover:bg-gray-300'>
             <div className='relative h-[120px] w-full bg-gray-400'>
@@ -46,14 +26,17 @@ export default function ShopList(item: itemSchema) {
                 width={400}
                 height={400}
                 alt='product image'
-                src={categoryImage[Number(item.categoryId)]}
+                src={categoryDisplay.categoryImage[Number(item.categoryId)]}
                 className='h-full object-cover'
               ></Image>
               <div
                 className='absolute bottom-1 right-0.5 flex items-center justify-center rounded-lg px-1 py-0.5 font-semibold text-black opacity-80 group-hover:opacity-100'
-                style={{ backgroundColor: categoryColor[item.categoryId] }}
+                style={{
+                  backgroundColor:
+                    categoryDisplay.categoryColor[item.categoryId],
+                }}
               >
-                <p>{categoryName[Number(item.categoryId)]}</p>
+                <p>{categoryDisplay.categoryName[Number(item.categoryId)]}</p>
               </div>
             </div>
             <div className='flex flex-row justify-between'>
@@ -63,7 +46,7 @@ export default function ShopList(item: itemSchema) {
               </p>
             </div>
 
-            <p>{item.description.slice(0, 20)}...</p>
+            <p>{item.description?.slice(0, 20)}...</p>
           </div>
         </Link>
       </div>

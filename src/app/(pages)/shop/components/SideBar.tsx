@@ -66,6 +66,7 @@ export default function SideBar() {
         <div className='flex flex-col space-y-2'>
           {categoryEntries.map(([itemCategory, color], index) => (
             <button
+              key={itemCategory}
               onClick={(e) => {
                 toggleCategory(itemCategory);
               }}
@@ -74,7 +75,6 @@ export default function SideBar() {
               <input
                 className='h-[20px] w-[20px] rounded-lg bg-primary focus:ring-2 focus:ring-primary-dark'
                 type='checkbox'
-                key={`category-${index}`}
                 checked={categoryFilter[itemCategory]}
               ></input>
               <p>{itemCategory}</p>
