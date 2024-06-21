@@ -41,7 +41,7 @@ export default function SideBar() {
     undefined
   );
   useEffect(() => {
-    const data = Object.keys(categoryFilter).map((item) => {
+    const data: any = Object.keys(categoryFilter).map((item) => {
       if (categoryFilter[item]) {
         return (
           <p className='mb-2 ml-2' key={item}>
