@@ -1,34 +1,38 @@
-"use client";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
-import { ItemContext } from "./ItemContext";
-import { getUserId } from "@/_assets/user";
-
+'use client';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
+import { ItemContext } from './ItemContext';
+import { getUserId } from '@/_assets/user';
+import { useSearchContext } from '../../components/searchContext';
 export default function ItemEdit({
   setIsEdit,
 }: {
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const item = useContext(ItemContext);
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
   const [price, setPrice] = useState(0);
   const [isDelete, setIsDelete] = useState(false);
-
+  const [category, setCategory] = useState('');
   const [userId, setUserId] = useState<Number | null>(null);
 
   const router = useRouter();
+  const { categoryDisplay } = useSearchContext();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
+      console.log(`/api/products/${item.id}`);
+
       const res = await axios.put(`/api/products/${item.id}`, {
         name,
         price: Number(price),
         description: desc,
         userId,
+        categoryId: category,
       });
       setIsEdit(false);
     } catch (error) {
@@ -45,10 +49,14 @@ export default function ItemEdit({
       });
       console.log(res.data);
 
-      router.push("/shop");
+      router.push('/shop');
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleChangeCat = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(event.target.value);
   };
 
   const initItem = async () => {
@@ -56,6 +64,7 @@ export default function ItemEdit({
       setName(item.name);
       setPrice(item.price);
       setDesc(item.description);
+      setCategory(categoryDisplay.categoryName[item.categoryId]);
       const response = await getUserId();
       setUserId(Number(response));
     } catch (error: unknown) {
@@ -67,22 +76,22 @@ export default function ItemEdit({
   }, []);
 
   return (
-    <section className="relative">
+    <section className='relative'>
       {isDelete && (
-        <div className="flex flex-col items-center space-y-1 justify-center absolute w-[100%] h-full bg-slate-900">
-          <div className="text-2xl font-bold">
-            Confirm to <span className="underline">Delete</span> Item
+        <div className='absolute flex h-full w-[100%] flex-col items-center justify-center space-y-1 bg-slate-900'>
+          <div className='text-2xl font-bold'>
+            Confirm to <span className='underline'>Delete</span> Item
           </div>
-          <div className="text-lg italic">
+          <div className='text-lg italic'>
             your item's data will lost after delete
           </div>
 
-          <div className="space-x-3">
+          <div className='space-x-3'>
             <button
               onClick={(e) => {
                 deleteItem(e);
               }}
-              className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white border-transparent bg-red-500 border hover:bg-red-500 hover:text-black"
+              className='inline-flex justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 hover:text-black'
             >
               Confirm Delete
             </button>
@@ -90,7 +99,7 @@ export default function ItemEdit({
               onClick={(e) => {
                 setIsDelete(false);
               }}
-              className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white border-red-500 border hover:bg-red-500 hover:text-black"
+              className='inline-flex justify-center rounded-md border border-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 hover:text-black'
             >
               Cancel
             </button>
@@ -98,47 +107,65 @@ export default function ItemEdit({
         </div>
       )}
 
-      <form className="space-y-6 w-[50vw] justify-start">
-        <div className="flex flex-row space-x-2 w-full">
-          <h1 className="text-3xl font-bold w-[20%]">Name</h1>
+      <form className='w-[50vw] justify-start space-y-6'>
+        <div className='flex w-full flex-row space-x-2'>
+          <h1 className='w-[20%] text-3xl font-bold'>Name</h1>
           <input
-            type="text"
-            name="name"
-            id="name"
+            type='text'
+            name='name'
+            id='name'
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 text-3xl block w-[92%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
+            className='mt-1 block w-[92%] rounded-md border-gray-300 pl-3 text-3xl text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg'
           />
         </div>
-        <div className="flex flex-row space-x-2 w-full">
-          <p className="text-xl w-[20%]">Price </p>
+        <div className='flex w-full flex-row space-x-2'>
+          <p className='w-[20%] text-xl'>Price </p>
           <input
-            type="text"
-            name="price"
-            id="price"
+            type='text'
+            name='price'
+            id='price'
             required
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            className="mt-1 block w-[92%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
+            className='mt-1 block w-[92%] rounded-md border-gray-300 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg'
           />
         </div>
-        <div className="flex flex-row space-x-2">
-          <p className="text-xl w-[20%]">Description </p>
+
+        <div className='flex w-full flex-row space-x-2'>
+          <p className='w-[20%] text-xl'>Category </p>
+
+          <select
+            name='category'
+            className='mt-1 block h-full w-[92%] rounded-md py-1 text-black'
+            onChange={handleChangeCat}
+          >
+            {Object.entries(categoryDisplay.categoryName).map(
+              ([itemCategory, color], index) => (
+                <option value={itemCategory}>
+                  {categoryDisplay.categoryName[Number(itemCategory)]}
+                </option>
+              )
+            )}
+          </select>
+        </div>
+        <div className='flex flex-row space-x-2'>
+          <p className='w-[20%] text-xl'>Description </p>
           <textarea
-            name="desc"
-            id="desc"
+            name='desc'
+            id='desc'
             required
             rows={4}
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-            className="mt-1 block w-[92%] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg pl-3 text-black"
+            className='mt-1 block w-[92%] rounded-md border-gray-300 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg'
           ></textarea>
         </div>
-        <div className="w-full flex justify-end space-x-5">
+        <div className='flex w-full justify-end space-x-5'>
           <button
-            type="submit"
-            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 "
+            type='submit'
+            className='inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700'
             onClick={(e) => {
               handleSubmit(e);
             }}
@@ -150,7 +177,7 @@ export default function ItemEdit({
               e.preventDefault();
               setIsDelete(true);
             }}
-            className="inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-white border-red-500 border hover:bg-red-500 hover:text-black"
+            className='inline-flex justify-center rounded-md border border-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 hover:text-black'
           >
             Delete this Item
           </button>

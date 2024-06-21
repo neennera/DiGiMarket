@@ -31,7 +31,7 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
     try {
         const id = Number(params.id)    
         const {
-            name, price, description, userId, category
+            name, price, description, userId, categoryId
         } = await request.json()
         const priceFloat = Number(price)    
 
@@ -46,29 +46,42 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
         if(itemData.userId != userId){
             throw new Error("this item is not belong to this user")
         }
+        console.log(categoryId);
         const catCheck = await prisma.itemCategory.findUnique({
-            where : {id:category}
-        })
+            where: {
+              id:Number(categoryId)
+            }
+          });
+        console.log(catCheck);
+        
         if(catCheck == null){
             throw new Error("no category")
         }
         
+        
+        
+        
         await prisma.products.update({
             where :{ id },
             data : {
-                name, price:priceFloat , description, categoryId : Number(category)
+                name, price:priceFloat , description, categoryId : Number(categoryId)
             }
         })
         return Response.json(
             {
-                'message' : 'success',
+                'message' : 'success'
             }
         )
         }
     catch(error:unknown){
+        let errorMessage = ""
+        if(error instanceof Error){
+            errorMessage = error.message
+        }
+        
         return Response.json({
             "message" : "fail",
-            "error" : error
+            "error" : errorMessage
         })
     }
 }

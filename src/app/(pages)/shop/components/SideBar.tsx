@@ -56,12 +56,6 @@ export default function SideBar() {
   return (
     <>
       <div className='w-full rounded-lg bg-slate-200 bg-opacity-15 p-5 sm:w-[85%]'>
-        <div className='mb-10 flex flex-col space-y-3'>
-          <p className='text-xl font-bold'>Search</p>
-          <p>"{searchText}"</p>
-          {sortBy}
-          {categoryNow}
-        </div>
         <p className='mb-2 text-xl font-bold'>Item Categories</p>
         <div className='flex flex-col space-y-2'>
           {categoryEntries.map(([itemCategory, color], index) => (

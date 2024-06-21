@@ -6,10 +6,6 @@ export async function POST(request: Request){
         const {
             searchText, categoryFilter, sortBy
         } = await request.json()
-        console.log(searchText);
-        console.log(categoryFilter);
-        console.log(sortBy);
-        
         let orderQuery = {}
         if(sortBy === 'relavance'){
             orderQuery = {}
@@ -28,7 +24,6 @@ export async function POST(request: Request){
             }
         }
 
-        console.log(orderQuery);
         
 
 
