@@ -12,6 +12,7 @@ interface CategoryDisplay {
   categoryColor: { [key: number]: string };
   categoryName: { [key: number]: string };
   categoryImage: { [key: number]: string };
+  categoryId: { [key: string]: number };
 }
 interface SearchContextType {
   searchText: string;
@@ -30,6 +31,7 @@ const SearchContext = createContext<SearchContextType | undefined>(undefined);
 export const categoryDisplay: CategoryDisplay = {
   categoryColor: {},
   categoryName: {},
+  categoryId: {},
   categoryImage: {
     0: '/productsImage/noCategory_mock.webp',
     1: '/productsImage/postit_mock.jpg',
@@ -52,6 +54,7 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
       categories[item.itemCategory] = true;
       categoryDisplay.categoryColor[index] = item.color;
       categoryDisplay.categoryName[index] = item.itemCategory;
+      categoryDisplay.categoryId[item.itemCategory] = index;
     });
     setCategoryFilter(categories);
   };

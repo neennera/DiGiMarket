@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loading from '@/_components/Loading';
 import ProductDisplay from './ProductDisplay';
-import { useSearchContext } from './searchContext';
+import { categoryDisplay, useSearchContext } from './searchContext';
 interface itemSchema {
   id: number;
   name: string;
@@ -33,9 +33,27 @@ export default function ShopList() {
   }, []);
 
   // handle search
-  const { searchText, categoryFilter, sortBy } = useSearchContext();
+  const { searchText, categoryFilter, sortBy, categoryDisplay } =
+    useSearchContext();
   const handleSearch = async () => {
-    console.log(searchText);
+    try {
+      const categoryList = Object.keys(categoryFilter).filter(
+        (key) => categoryFilter[key]
+      );
+      const categoryFilterId: number[] = [];
+      categoryList.map((item) => {
+        categoryFilterId.push(categoryDisplay.categoryId[item]);
+      });
+      const response = await axios.post('/api/products/search', {
+        searchText,
+        categoryFilter: categoryFilterId,
+        sortBy,
+      });
+      setItems(response.data.data);
+    } catch (error) {
+      console.log(error);
+      setItems([]);
+    }
   };
   useEffect(() => {
     handleSearch();
@@ -43,6 +61,12 @@ export default function ShopList() {
   return (
     <>
       {loading && <Loading />}
+      {items.length == 0 && !loading && (
+        <div className='flex w-full flex-col items-center justify-center space-y-3 pt-8'>
+          <p className='text-2xl font-semibold'> Sorry, your item not found</p>
+          <p className='text-xl'> try to use another keyword?</p>
+        </div>
+      )}
       <div className='grid-col-1 grid w-full gap-5 sm:grid-cols-2 lg:grid-cols-4'>
         {items.map((item: itemSchema) => (
           <ProductDisplay key={item.name} item={item} />
