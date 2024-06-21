@@ -25,8 +25,6 @@ export default function ItemEdit({
     e.preventDefault();
 
     try {
-      console.log(`/api/products/${item.id}`);
-
       const res = await axios.put(`/api/products/${item.id}`, {
         name,
         price: Number(price),
@@ -47,7 +45,6 @@ export default function ItemEdit({
       const res = await axios.delete(`/api/products/${item.id}`, {
         data: { userId },
       });
-      console.log(res.data);
 
       router.push('/shop');
     } catch (error) {

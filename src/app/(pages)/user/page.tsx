@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar';
 import PurchaseHistory from './components/PurchaseHistory';
 import axios from 'axios';
 import ShopManage from './components/ShopMange';
+import { SearchProvider } from '../shop/components/searchContext';
 
 const formatDate = (date: Date): string => {
   return date.toLocaleDateString('en-GB', {
@@ -21,7 +22,7 @@ export default async function Page() {
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
   );
-  let user = res.data.data;
+  const user = res.data.data;
 
   return (
     <>
@@ -39,8 +40,9 @@ export default async function Page() {
             <PurchaseHistory />
           </div>
           <RoleManage />
-
-          {user.role == 'shop' ? <ShopManage user={user} /> : <></>}
+          <SearchProvider>
+            {user.role == 'shop' ? <ShopManage user={user} /> : <></>}
+          </SearchProvider>
         </div>
       </div>
     </>

@@ -14,11 +14,13 @@ export async function GET(){
 export async function POST(request: Request){
     try{
        const {
-            name, price, description, userId, category
+            name, price, description, userId, categoryId
         } = await request.json()
         const priceFloat = Number(price)  
         
         // check user account
+        console.log(userId);
+        
         const userOwner = await prisma.user.findUnique({where : {id: Number(userId)}})
         if(userOwner == null){
             throw new Error("no user account with this userId")
@@ -27,17 +29,22 @@ export async function POST(request: Request){
             throw new Error("user is not regiuster as shop")
         }
 
-        // handle category in create
+        // handle category in create        
+        console.log("----",categoryId);
+
         const catCheck = await prisma.itemCategory.findUnique({
-            where : {id:category}
-        })
+            where: {
+              id:Number(categoryId)
+            }
+          });
+        
         if(catCheck == null){
             throw new Error("no category")
         }
        
         const newProduct = await prisma.products.create({
             data : {
-                name, price : priceFloat, description, userId: Number(userId), categoryId : Number(category)
+                name, price : priceFloat, description, userId: Number(userId), categoryId : Number(categoryId)
             }
         }) 
         return Response.json({

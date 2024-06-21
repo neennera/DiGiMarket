@@ -3,16 +3,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useSearchContext } from '../../shop/components/searchContext';
 
-const CreateItemForm = (userId: string) => {
+const CreateItemForm = (params: { userId: string }) => {
+  const { categoryDisplay } = useSearchContext();
+
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
+  const [category, setCategory] = useState('');
+
   const [price, setPrice] = useState(0);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('--------', userId);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`,
@@ -20,7 +24,8 @@ const CreateItemForm = (userId: string) => {
           name,
           price: Number(price),
           description: desc,
-          userId,
+          userId: Number(params.userId),
+          categoryId: Number(category),
         }
       );
 
@@ -32,9 +37,13 @@ const CreateItemForm = (userId: string) => {
     }
   };
 
+  const handleChangeCat = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(event.target.value);
+  };
+
   return (
-    <div className='max-w-4xl'>
-      <form className='flex flex-col space-y-6'>
+    <div className='w-full pl-5'>
+      <form className='flex w-[90%] flex-col space-y-6'>
         <fieldset>
           <label className='block text-sm font-medium text-gray-200'>
             Item Name
@@ -46,7 +55,7 @@ const CreateItemForm = (userId: string) => {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className='mt-1 block w-full rounded-md border-gray-300 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           />
         </fieldset>
         <fieldset>
@@ -60,8 +69,26 @@ const CreateItemForm = (userId: string) => {
             required
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
-            className='mt-1 block w-full rounded-md border-gray-300 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           />
+        </fieldset>
+        <fieldset>
+          <label className='block text-sm font-medium text-gray-200'>
+            Category
+          </label>
+          <select
+            name='category'
+            className='mt-1 block h-full w-full rounded-md py-1 pl-2 text-black'
+            onChange={handleChangeCat}
+          >
+            {Object.entries(categoryDisplay.categoryName).map(
+              ([itemCategory, color], index) => (
+                <option value={itemCategory}>
+                  {categoryDisplay.categoryName[Number(itemCategory)]}
+                </option>
+              )
+            )}
+          </select>
         </fieldset>
         <fieldset>
           <label className='block text-sm font-medium text-gray-200'>
@@ -74,18 +101,18 @@ const CreateItemForm = (userId: string) => {
             rows={4}
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-            className='mt-1 block w-full rounded-md border-gray-300 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+            className='mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 text-black shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           ></textarea>
         </fieldset>
-        <fieldset>
+        <fieldset className='flex w-full justify-end'>
           <button
             type='submit'
-            className='text-whiterounded-md inline-flex justify-center self-end rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-dark'
+            className='text-whiterounded-md inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-dark'
             onClick={(e) => {
               handleSubmit(e);
             }}
           >
-            Submit
+            Publich The Item
           </button>
         </fieldset>
       </form>
