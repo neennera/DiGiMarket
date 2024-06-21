@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loading from '@/_components/Loading';
 import ProductDisplay from './ProductDisplay';
-
+import { useSearchContext } from './searchContext';
 interface itemSchema {
   id: number;
   name: string;
@@ -12,10 +12,11 @@ interface itemSchema {
   createdAt: Date;
   categoryId: number;
 }
+
 export default function ShopList() {
+  // init items
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const initItems = async () => {
     try {
       const response = await axios.get('/api/products');
@@ -30,6 +31,15 @@ export default function ShopList() {
   useEffect(() => {
     initItems();
   }, []);
+
+  // handle search
+  const { searchText, categoryFilter, sortBy } = useSearchContext();
+  const handleSearch = async () => {
+    console.log(searchText);
+  };
+  useEffect(() => {
+    handleSearch();
+  }, [searchText, categoryFilter, sortBy]);
   return (
     <>
       {loading && <Loading />}

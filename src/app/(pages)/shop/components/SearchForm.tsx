@@ -6,7 +6,8 @@ function submitForm(searchWord: string) {
 }
 
 export default function SearchForm() {
-  const { searchText, setSearchText, sortBy, setSortBy } = useSearchContext();
+  const { setSearchText, sortBy, setSortBy } = useSearchContext();
+  const [searchWord, setSearchWord] = useState('');
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(event.target.value);
   };
@@ -17,17 +18,17 @@ export default function SearchForm() {
         <input
           className='w-[70%] rounded-md py-1 pl-2 text-black'
           type='text'
-          value={searchText}
+          value={searchWord}
           name='name'
           onChange={(e) => {
-            setSearchText(e.target.value);
+            setSearchWord(e.target.value);
           }}
         />
         <button
           className='h-[100%] rounded-md bg-primary-dark px-3 py-1 font-semibold text-white'
           onClick={(e) => {
             e.preventDefault();
-            submitForm(searchText);
+            setSearchText(searchWord);
           }}
         >
           Search
