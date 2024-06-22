@@ -1,6 +1,6 @@
 export default function Timeline() {
   return (
-    <>
+    <div className='mb-8'>
       <div className='mb-5 flex flex-row space-x-2'>
         <div className='mr-2 h-[50px] w-[8px] bg-white'></div>
         <h2 className='animate-fade-in mb-4 text-3xl font-semibold'>
@@ -12,7 +12,7 @@ export default function Timeline() {
         <div className='flex flex-col sm:ml-[100px]'>
           <div className='flex flex-row'>
             <div className='mb-8'>
-              <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-green-500 text-center'>
+              <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-green-500 text-center max-sm:hidden'>
                 <p className='text-[2rem]'>✅</p>
               </div>
               <h3 className='animate-fade-in mb-2 text-2xl font-semibold'>
@@ -32,7 +32,7 @@ export default function Timeline() {
           </div>
 
           <div className='mb-8'>
-            <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-white text-center'>
+            <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-white text-center max-sm:hidden'>
               <p className='text-[2rem]'>🕛</p>
             </div>
             <h3 className='animate-fade-in mb-2 text-2xl font-semibold'>
@@ -47,7 +47,7 @@ export default function Timeline() {
           </div>
 
           <div>
-            <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-white text-center'>
+            <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-white text-center max-sm:hidden'>
               <p className='text-[2rem]'>🕛</p>
             </div>
             <h3 className='animate-fade-in mb-2 text-2xl font-semibold'>
@@ -60,7 +60,7 @@ export default function Timeline() {
             </ul>
           </div>
           <div>
-            <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-white text-center'>
+            <div className='absolute left-[5px] z-10 h-[50px] w-[50px] items-center rounded-full bg-white text-center max-sm:hidden'>
               <p className='text-[2rem]'>🕛</p>
             </div>
             <h3 className='animate-fade-in mb-2 text-2xl font-semibold'>
@@ -69,6 +69,6 @@ export default function Timeline() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

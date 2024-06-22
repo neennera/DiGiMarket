@@ -52,8 +52,8 @@ export default function Home() {
           <h2 className='mb-8 text-2xl font-bold sm:text-3xl'>
             What Our Users Say
           </h2>
-          <div className='grid grid-cols-1 gap-8 text-black md:grid-cols-3'>
-            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md shadow-slate-400'>
+          <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
+            <div className='h-[300px] rounded-lg bg-white bg-opacity-15 p-7 pt-[20%]'>
               <p className='mb-4'>
                 "DiGi Market has transformed the way I sell my digital products.
                 The platform is user-friendly and my sales have increased
@@ -61,14 +61,14 @@ export default function Home() {
               </p>
               <div className='font-bold'>- Alice Johnson</div>
             </div>
-            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md shadow-slate-400'>
+            <div className='h-[300px] rounded-lg bg-white bg-opacity-15 p-7 pt-[20%]'>
               <p className='mb-4'>
                 "I love how easy it is to find high-quality digital products on
                 DiGi Market. It's my go-to marketplace for all things digital."
               </p>
               <div className='font-bold'>- Mark Smith</div>
             </div>
-            <div className='h-[300px] rounded-lg bg-white p-7 pt-[20%] shadow-md shadow-slate-400'>
+            <div className='h-[300px] rounded-lg bg-white bg-opacity-15 p-7 pt-[20%]'>
               <p className='mb-4'>
                 "The support team at DiGi Market is fantastic! They helped me
                 set up my shop and provided valuable tips to boost my sales."

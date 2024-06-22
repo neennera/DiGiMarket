@@ -21,15 +21,17 @@ export default async function Header() {
   return (
     <nav>
       <div className='text-md shadow-bl fixed left-1/2 top-2 z-50 flex h-[50px] w-[90vw] -translate-x-1/2 transform flex-row items-center justify-between self-center rounded-full bg-primary bg-opacity-80 px-5 py-3 font-semibold text-black shadow-lg shadow-sky-800 backdrop-blur-sm'>
-        <div className='ml-2 flex flex-row space-x-2 font-abril text-lg font-semibold sm:text-2xl'>
-          <Image
-            src='/icon.png'
-            height={20}
-            width={20}
-            className='h-full w-auto'
-          />
-          <Link href='/'>DiGi Market</Link>
-        </div>
+        <Link href='/'>
+          <div className='ml-2 flex flex-row space-x-2 font-abril text-lg font-semibold sm:text-2xl'>
+            <Image
+              src='/icon.png'
+              height={20}
+              width={20}
+              className='h-full w-auto'
+            />
+            DiGi Market
+          </div>
+        </Link>
         {/* <div className='flex flex-row space-x-5 max-sm:hidden'>
           <input className='h-[30px] w-[30vw] rounded-md bg-white'></input>
           <div className='flex cursor-pointer items-center justify-center rounded-md bg-primary-dark px-3 text-white'>
