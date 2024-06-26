@@ -1,4 +1,3 @@
-import React from 'react';
 import { headers } from 'next/headers';
 import RoleManage from './components/RoleManage';
 import Sidebar from './components/Sidebar';
@@ -17,7 +16,8 @@ const formatDate = (date: Date): string => {
 
 export default async function Page() {
   const headerRequest = headers();
-  const userId = JSON.parse(headerRequest.get('userId'));
+  const headerId = headerRequest.get('userId');
+  var userId = JSON.parse(headerId ? headerId : '');
 
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
@@ -26,9 +26,9 @@ export default async function Page() {
 
   return (
     <>
-      <div className='m-auto mt-5 flex h-full w-[95%] sm:flex-row'>
+      <div className='m-auto mt-5 flex h-full w-[95%] max-sm:-ml-7 max-sm:w-[95vw] sm:flex-row'>
         <Sidebar />
-        <div className='w-full space-y-20 py-3 sm:w-[60%]'>
+        <div className='w-[full] space-y-20 rounded-md bg-black bg-opacity-40 py-3 sm:w-[75%] sm:px-8'>
           <div id='userInfo' className='scroll-mt-[11vh]'>
             <h1 className='mb-6 text-5xl font-semibold'>
               Hello, {user.username} 👋🏽

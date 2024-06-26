@@ -6,7 +6,9 @@ import Image from 'next/image';
 
 export default async function Header() {
   const headerRequest = headers();
-  const userId = JSON.parse(headerRequest.get('userId'));
+  const headerId = headerRequest.get('userId');
+  var userId = JSON.parse(headerId ? headerId : '');
+
   let username = 'Login';
   try {
     const res = await axios.get(
@@ -22,22 +24,17 @@ export default async function Header() {
     <nav>
       <div className='text-md shadow-bl fixed left-1/2 top-2 z-50 flex h-[50px] w-[90vw] -translate-x-1/2 transform flex-row items-center justify-between self-center rounded-full bg-primary bg-opacity-80 px-5 py-3 font-semibold text-black shadow-lg shadow-sky-800 backdrop-blur-sm'>
         <Link href='/'>
-          <div className='ml-2 flex flex-row space-x-2 font-abril text-lg font-semibold sm:text-2xl'>
+          <div className='ml-2 flex flex-row space-x-[7px] font-abril text-lg font-semibold sm:text-2xl'>
             <Image
               src='/icon.png'
-              height={20}
-              width={20}
+              height={22}
+              width={22}
+              alt='digiLogo'
               className='h-full w-auto'
             />
-            DiGi Market
+            <p>DiGi Market</p>
           </div>
         </Link>
-        {/* <div className='flex flex-row space-x-5 max-sm:hidden'>
-          <input className='h-[30px] w-[30vw] rounded-md bg-white'></input>
-          <div className='flex cursor-pointer items-center justify-center rounded-md bg-primary-dark px-3 text-white'>
-            Search
-          </div>
-        </div> */}
         <div className='flex flex-row space-x-5 max-sm:hidden'>
           <Link href='/shop'>
             <p>Shops</p>

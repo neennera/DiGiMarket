@@ -16,7 +16,7 @@ export async function POST(request: Request){
             }
         }) 
         return Response.json({
-            "message" : "successfully change role",
+            "message" : "success",
             "data" : newUser
         })
     } catch (error : unknown){

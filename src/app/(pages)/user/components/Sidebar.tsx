@@ -8,19 +8,25 @@ const handleLogout = () => {
 
 export default async function Sidebar() {
   return (
-    <div className='sticky top-[10vh] h-[80vh] w-full sm:w-[20vw]'>
+    <div className='sticky top-[12vh] h-[80vh] w-full max-sm:hidden sm:w-[20vw]'>
       <h2 className='text-2xl font-semibold'>Index</h2>
       <div className='mt-2 flex flex-col space-y-2 pl-3'>
         <a href='#userInfo'>
-          <p className='font-gray text-lg hover:underline'>User Information</p>
+          <p className='font-gray text-lg hover:underline'>
+            ▫️ User Information
+          </p>
         </a>
         <a href='#roleManage'>
-          <p className='font-gray text-lg hover:underline'>Role Management</p>
+          <p className='font-gray text-lg hover:underline'>
+            ▫️ Role Management
+          </p>
         </a>
         <a href='#shopManage'>
-          <p className='font-gray text-lg hover:underline'>Shop Management</p>
+          <p className='font-gray text-lg hover:underline'>
+            ▫️ Shop Management
+          </p>
         </a>
-        <div className='pl-3'>
+        <div className='pl-8'>
           <a href='#saleRecord'>
             <p className='font-gray text-lg hover:underline'>Sales Record</p>
           </a>
