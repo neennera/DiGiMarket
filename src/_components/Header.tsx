@@ -7,10 +7,10 @@ import Image from 'next/image';
 export default async function Header() {
   const headerRequest = headers();
   const headerId = headerRequest.get('userId');
-  var userId = JSON.parse(headerId ? headerId : '');
 
   let username = 'Login';
   try {
+    var userId = JSON.parse(headerId ? headerId : '');
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
     );
