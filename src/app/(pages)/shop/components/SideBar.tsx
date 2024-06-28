@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useSearchContext } from './searchContext';
+import { useSearchContext } from './SearchContext';
 
 interface categorySchema {
   id: number;

@@ -7,7 +7,7 @@ import ItemEdit from './components/itemEdit';
 import EditButton from './components/EditButton';
 import axios from 'axios';
 import { ItemContext, itemSchema, defaultItem } from './components/ItemContext';
-import { SearchProvider } from '../components/searchContext';
+import { SearchProvider } from '../components/SearchContext';
 import Link from 'next/link';
 import RecommendItem from './components/RecommendItem';
 

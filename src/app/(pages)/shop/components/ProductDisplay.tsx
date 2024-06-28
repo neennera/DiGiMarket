@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
-import { useSearchContext } from './searchContext';
+import { useSearchContext } from './SearchContext';
 
 interface itemSchema {
   id: number;

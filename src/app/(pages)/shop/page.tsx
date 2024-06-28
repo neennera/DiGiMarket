@@ -3,7 +3,7 @@
 import SearchForm from './components/SearchForm';
 import ShopList from './components/ShopList';
 import SideBar from './components/SideBar';
-import { SearchProvider } from './components/searchContext';
+import { SearchProvider } from './components/SearchContext';
 
 export default function Page() {
   return (

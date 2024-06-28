@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useSearchContext } from '../../shop/components/searchContext';
+import { useSearchContext } from '../../shop/components/SearchContext';
 
 const CreateItemForm = (params: { userId: string }) => {
   const { categoryDisplay } = useSearchContext();

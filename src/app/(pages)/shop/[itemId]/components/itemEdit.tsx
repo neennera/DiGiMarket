@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useContext, useEffect, useState } from 'react';
 import { ItemContext } from './ItemContext';
 import { getUserId } from '@/_assets/user';
-import { useSearchContext } from '../../components/searchContext';
+import { useSearchContext } from '../../components/SearchContext';
 export default function ItemEdit({
   setIsEdit,
 }: {

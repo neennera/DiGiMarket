@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar';
 import PurchaseHistory from './components/PurchaseHistory';
 import axios from 'axios';
 import ShopManage from './components/ShopMange';
-import { SearchProvider } from '../shop/components/searchContext';
+import { SearchProvider } from '../shop/components/SearchContext';
 
 const formatDate = (date: Date): string => {
   return date.toLocaleDateString('en-GB', {

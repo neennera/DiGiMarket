@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchContext } from './searchContext';
+import { useSearchContext } from './SearchContext';
 
 function submitForm(searchWord: string) {
   console.log(searchWord);

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loading from '@/_components/Loading';
 import ProductDisplay from './ProductDisplay';
-import { categoryDisplay, useSearchContext } from './searchContext';
+import { categoryDisplay, useSearchContext } from './SearchContext';
 interface itemSchema {
   id: number;
   name: string;

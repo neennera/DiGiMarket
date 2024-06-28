@@ -1,7 +1,7 @@
 'use client';
 import { useContext, useEffect, useState } from 'react';
 import { ItemContext } from './ItemContext';
-import { useSearchContext } from '../../components/searchContext';
+import { useSearchContext } from '../../components/SearchContext';
 import Image from 'next/image';
 
 const formatter = new Intl.NumberFormat('en-US', {
