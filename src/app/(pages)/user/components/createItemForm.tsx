@@ -31,6 +31,8 @@ const CreateItemForm = (params: { userId: string }) => {
 
       if (res.data.message == 'success') {
         router.push('/shop');
+      } else {
+        alert(res.data.error);
       }
     } catch (error) {
       console.error(error);
@@ -78,12 +80,13 @@ const CreateItemForm = (params: { userId: string }) => {
           </label>
           <select
             name='category'
+            key='category'
             className='mt-1 block h-full w-full rounded-md py-1 pl-2 text-black'
             onChange={handleChangeCat}
           >
             {Object.entries(categoryDisplay.categoryName).map(
               ([itemCategory, color], index) => (
-                <option value={itemCategory}>
+                <option value={itemCategory} key={index}>
                   {categoryDisplay.categoryName[Number(itemCategory)]}
                 </option>
               )

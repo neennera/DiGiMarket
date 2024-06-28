@@ -6,7 +6,7 @@ const handleLogout = () => {
   window.location.href = '/login';
 };
 
-export default async function Sidebar() {
+export default function Sidebar() {
   return (
     <div className='sticky top-[12vh] h-[80vh] w-full max-sm:hidden sm:w-[20vw]'>
       <h2 className='text-2xl font-semibold'>Index</h2>

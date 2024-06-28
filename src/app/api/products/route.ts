@@ -18,20 +18,19 @@ export async function POST(request: Request){
         } = await request.json()
         const priceFloat = Number(price)  
         
-        // check user account
-        console.log(userId);
-        
-        const userOwner = await prisma.user.findUnique({where : {id: Number(userId)}})
+        // check user account        
+        const userOwner = await prisma.user.findUnique({where : {id: Number(userId)}, include:{Products:true}})
         if(userOwner == null){
             throw new Error("no user account with this userId")
         }
         if(userOwner.role != "shop"){
             throw new Error("user is not regiuster as shop")
+        }       
+        if(userOwner.Products.length >= 2){
+            throw new Error("User can only create two item")
         }
 
-        // handle category in create        
-        console.log("----",categoryId);
-
+        // handle category in create
         const catCheck = await prisma.itemCategory.findUnique({
             where: {
               id:Number(categoryId)
