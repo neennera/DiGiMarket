@@ -22,7 +22,11 @@ export default function ItemDisplay() {
             width={400}
             height={400}
             alt='product image'
-            src={categoryDisplay.categoryImage[item.categoryId]}
+            src={
+              categoryDisplay.categoryImage[
+                categoryDisplay.categoryName[item.categoryId]
+              ]
+            }
             className='h-full w-auto object-fill'
             priority={true}
           ></Image>

@@ -33,10 +33,10 @@ export const categoryDisplay: CategoryDisplay = {
   categoryName: {},
   categoryId: {},
   categoryImage: {
-    0: '/productsImage/noCategory_mock.webp',
-    1: '/productsImage/postit_mock.jpg',
-    2: '/productsImage/planner_mock.jpg',
-    3: '/productsImage/sticker_mock.png',
+    noCategory: '/productsImage/noCategory_mock.webp',
+    postit: '/productsImage/postit_mock.jpg',
+    planner: '/productsImage/planner_mock.jpg',
+    sticker: '/productsImage/sticker_mock.png',
   },
 };
 // Create the provider component
