@@ -52,9 +52,9 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
 
     response.data.data.forEach((item: any, index: string) => {
       categories[item.itemCategory] = true;
-      categoryDisplay.categoryColor[index] = item.color;
-      categoryDisplay.categoryName[index] = item.itemCategory;
-      categoryDisplay.categoryId[item.itemCategory] = index;
+      categoryDisplay.categoryColor[item.id] = item.color;
+      categoryDisplay.categoryName[item.id] = item.itemCategory;
+      categoryDisplay.categoryId[item.itemCategory] = item.id;
     });
     setCategoryFilter(categories);
   };
