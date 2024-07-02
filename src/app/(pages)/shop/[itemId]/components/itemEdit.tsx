@@ -15,8 +15,8 @@ export default function ItemEdit({
   const [desc, setDesc] = useState('');
   const [price, setPrice] = useState(0);
   const [isDelete, setIsDelete] = useState(false);
-  const [category, setCategory] = useState(0);
-  const [userId, setUserId] = useState<Number | null>(null);
+  const [category, setCategory] = useState('noCategory');
+  const [userId, setUserId] = useState<string | null>(null);
 
   const router = useRouter();
   const { categoryDisplay } = useSearchContext();
@@ -54,7 +54,7 @@ export default function ItemEdit({
   };
 
   const handleChangeCat = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(Number(event.target.value));
+    setCategory(event.target.value);
   };
 
   const initItem = async () => {
@@ -64,7 +64,7 @@ export default function ItemEdit({
       setDesc(item.description);
       setCategory(item.categoryId);
       const response = await getUserId();
-      setUserId(Number(response));
+      setUserId(response);
     } catch (error: unknown) {
       console.log(error);
     }
@@ -145,7 +145,7 @@ export default function ItemEdit({
             {Object.entries(categoryDisplay.categoryName).map(
               ([itemCategory, color], index) => (
                 <option value={itemCategory}>
-                  {categoryDisplay.categoryName[Number(itemCategory)]}
+                  {categoryDisplay.categoryName[itemCategory]}
                 </option>
               )
             )}

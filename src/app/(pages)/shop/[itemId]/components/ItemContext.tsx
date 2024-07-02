@@ -6,8 +6,8 @@ export interface itemSchema {
   price: number;
   description: string;
   createdAt: Date;
-  userId: number;
-  categoryId: number;
+  userId: string;
+  categoryId: string;
 }
 
 export const defaultItem: itemSchema = {
@@ -16,8 +16,8 @@ export const defaultItem: itemSchema = {
   description: '',
   price: 0,
   createdAt: new Date(),
-  userId: -1,
-  categoryId: 0,
+  userId: '-1',
+  categoryId: '0',
 };
 
 export const ItemContext = createContext<itemSchema>(defaultItem);

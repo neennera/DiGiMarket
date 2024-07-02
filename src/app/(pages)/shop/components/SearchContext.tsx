@@ -9,10 +9,10 @@ import React, {
 import axios from 'axios';
 
 interface CategoryDisplay {
-  categoryColor: { [key: number]: string };
-  categoryName: { [key: number]: string };
-  categoryImage: { [key: number]: string };
-  categoryId: { [key: string]: number };
+  categoryColor: { [key: string]: string };
+  categoryName: { [key: string]: string };
+  categoryImage: { [key: string]: string };
+  categoryId: { [key: string]: string };
 }
 interface SearchContextType {
   searchText: string;
@@ -50,7 +50,7 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     const response = await axios.get('/api/category');
     const categories: { [itemCategory: string]: boolean } = {};
 
-    response.data.data.forEach((item: any, index: number) => {
+    response.data.data.forEach((item: any, index: string) => {
       categories[item.itemCategory] = true;
       categoryDisplay.categoryColor[index] = item.color;
       categoryDisplay.categoryName[index] = item.itemCategory;

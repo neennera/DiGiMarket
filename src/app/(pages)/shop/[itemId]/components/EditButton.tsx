@@ -26,11 +26,11 @@ export default function EditButton({
 }: paramsSchema) {
   const item = useContext(ItemContext);
 
-  const [userId, setUserId] = useState<Number | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   const initItem = async () => {
     try {
-      const response = await getUserId();
-      setUserId(Number(response));
+      const response: string = await getUserId();
+      setUserId(response);
     } catch (error: unknown) {
       console.log(error);
     }

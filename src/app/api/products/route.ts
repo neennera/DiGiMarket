@@ -33,7 +33,7 @@ export async function POST(request: Request){
         // handle category in create
         const catCheck = await prisma.itemCategory.findUnique({
             where: {
-              id:Number(categoryId)
+              id:categoryId
             }
           });
         
@@ -43,7 +43,7 @@ export async function POST(request: Request){
        
         const newProduct = await prisma.products.create({
             data : {
-                name, price : priceFloat, description, userid: userId, categoryId : Number(categoryId)
+                name, price : priceFloat, description, userId, categoryId : categoryId
             }
         }) 
         return Response.json({

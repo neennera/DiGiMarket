@@ -24,8 +24,8 @@ const CreateItemForm = (params: { userId: string }) => {
           name,
           price: Number(price),
           description: desc,
-          userId: Number(params.userId),
-          categoryId: Number(category),
+          userId: params.userId,
+          categoryId: category,
         }
       );
 
@@ -87,7 +87,7 @@ const CreateItemForm = (params: { userId: string }) => {
             {Object.entries(categoryDisplay.categoryName).map(
               ([itemCategory, color], index) => (
                 <option value={itemCategory} key={index}>
-                  {categoryDisplay.categoryName[Number(itemCategory)]}
+                  {categoryDisplay.categoryName[itemCategory]}
                 </option>
               )
             )}

@@ -48,7 +48,7 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
         }
         const catCheck = await prisma.itemCategory.findUnique({
             where: {
-              id:Number(categoryId)
+              id:categoryId
             }
           });
         
@@ -61,7 +61,7 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
         await prisma.products.update({
             where :{ id },
             data : {
-                name, price:priceFloat , description, categoryId : Number(categoryId)
+                name, price:priceFloat , description, categoryId 
             }
         })
         return Response.json(
