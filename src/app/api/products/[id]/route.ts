@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 
 export async function GET(request: Request,  { params }: { params: { id: string } }){   
     try {
-        const id = Number(params.id)  
+        const id = params.id
         const datas = await prisma.products.findUnique({
             where :{
                 id
@@ -29,7 +29,7 @@ export async function GET(request: Request,  { params }: { params: { id: string 
 
 export async function PUT(request: Request,  { params }: { params: { id: string } }){   
     try {
-        const id = Number(params.id)    
+        const id = params.id  
         const {
             name, price, description, userId, categoryId
         } = await request.json()
@@ -85,7 +85,7 @@ export async function PUT(request: Request,  { params }: { params: { id: string 
 
 export async function DELETE(request: Request,  { params }: { params: { id: string } }){   
     try {
-        const id = Number(params.id)  
+        const id = params.id
         const {
             userId
         } = await request.json()

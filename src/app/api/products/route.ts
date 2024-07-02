@@ -19,7 +19,7 @@ export async function POST(request: Request){
         const priceFloat = Number(price)  
         
         // check user account        
-        const userOwner = await prisma.user.findUnique({where : {id: Number(userId)}, include:{Products:true}})
+        const userOwner = await prisma.user.findUnique({where : {id: userId}, include:{Products:true}})
         if(userOwner == null){
             throw new Error("no user account with this userId")
         }
@@ -43,7 +43,7 @@ export async function POST(request: Request){
        
         const newProduct = await prisma.products.create({
             data : {
-                name, price : priceFloat, description, userId: Number(userId), categoryId : Number(categoryId)
+                name, price : priceFloat, description, userid: userId, categoryId : Number(categoryId)
             }
         }) 
         return Response.json({
