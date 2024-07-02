@@ -16,8 +16,7 @@ export default function LoginComponent({
 
   const handleLogin = async () => {
     const res = await login(username, password);
-    console.log(res);
-    if (res == undefined) {
+    if (res === undefined) {
       return;
     }
     if (res.message != 'success') {
