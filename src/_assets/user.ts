@@ -11,7 +11,7 @@ export async function getUserId() {
 
     try{
         const secretKey = await importJWK(secretJWK, 'HS256')
-        const {payload} = await jwtVerify(userToken, secretKey)    
+        const {payload} = await jwtVerify(userToken || "", secretKey)    
         return payload.userId
     } catch (error:unknown){
         return -1

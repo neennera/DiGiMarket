@@ -73,10 +73,19 @@ export default function SideBar() {
                 checked={!!categoryFilter[itemCategory]}
                 onChange={(e) => {
                   const isChecked = e.target.checked;
-                  setCategoryFilter((prevState) => ({
-                    ...prevState,
-                    [itemCategory]: isChecked,
-                  }));
+                  const result = categoryFilter;
+                  result[itemCategory] = isChecked;
+                  setCategoryFilter(result);
+                  // TODO : change to set prev
+                  // setCategoryFilter(
+                  //   (prevState: { [itemCategory: string]: boolean }) => {
+                  //     const result: { [itemCategory: string]: boolean } = {
+                  //       ...prevState,
+                  //       [itemCategory]: isChecked,
+                  //     };
+                  //     return result;
+                  //   }
+                  // );
                 }}
               ></input>
               <p>{itemCategory}</p>
