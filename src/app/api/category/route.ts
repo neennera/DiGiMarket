@@ -15,11 +15,11 @@ export async function GET(){
 export async function POST(request: Request){
     try{
        const {
-        itemCategory
+        itemCategory, color
     } = await request.json()
     const datas = await prisma.itemCategory.create({
         data : {
-            itemCategory
+            itemCategory, color
         }
     })
     return Response.json(
@@ -41,12 +41,12 @@ export async function POST(request: Request){
 export async function PUT(request: Request){
     try{
        const {
-        oldId, newId, itemCategory
+        itemCategory, color
     } = await request.json()
     
-    const data = await prisma.itemCategory.update({where :{ id: oldId },
+    const data = await prisma.itemCategory.update({where :{ itemCategory },
         data : {
-            id:newId, itemCategory
+            itemCategory, color
         }})
     return Response.json(
         {
