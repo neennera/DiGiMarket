@@ -10,7 +10,7 @@ interface itemSchema {
   price: number;
   description: string;
   createdAt: Date;
-  categoryId: number;
+  categoryId: string;
 }
 
 export default function ShopList() {
@@ -40,7 +40,7 @@ export default function ShopList() {
       const categoryList = Object.keys(categoryFilter).filter(
         (key) => categoryFilter[key]
       );
-      const categoryFilterId: number[] = [];
+      const categoryFilterId: string[] = [];
       categoryList.map((item) => {
         categoryFilterId.push(categoryDisplay.categoryId[item]);
       });
