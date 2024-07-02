@@ -35,10 +35,11 @@ A product that based on digital technology, existing in a non-physica form. This
 - category search & category create (done)
 - image photo base on category (done)
 - implement logout button (done)
-- write about project page
+- write about project page (done)
 
 (phase 2 : Customizing)
 
+- migrate postgresql to mongoDB for deployment
 - upload product image
 - implement cart
 - implement checkout process
