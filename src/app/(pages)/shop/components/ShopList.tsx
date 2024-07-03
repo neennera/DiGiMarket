@@ -49,7 +49,9 @@ export default function ShopList() {
         categoryFilter: categoryFilterId,
         sortBy,
       });
-      setItems(response.data.data);
+      console.log(response.data);
+
+      // setItems(response.data.data);
     } catch (error) {
       console.log(error);
       setItems([]);
@@ -58,10 +60,18 @@ export default function ShopList() {
   useEffect(() => {
     handleSearch();
   }, [searchText, categoryFilter, sortBy]);
+
+  if (loading || items === undefined) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
+  }
+
   return (
     <>
-      {loading && <Loading />}
-      {items.length === 0 && !loading && (
+      {items.length === 0 && (
         <div className='flex w-full flex-col items-center justify-center space-y-3 pt-8'>
           <p className='text-2xl font-semibold'> Sorry, your item not found</p>
           <p className='text-xl'> try to use another keyword?</p>

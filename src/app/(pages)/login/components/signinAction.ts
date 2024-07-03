@@ -11,7 +11,7 @@ export async function signin(username:string, password:string){
     }
     
     // fetch login API    
-    const response = await axios.post(`${process.env.BASE_URL}/api/user`,{
+    const response = await axios.post("/api/user",{
         username, password
     })
 
@@ -19,7 +19,7 @@ export async function signin(username:string, password:string){
         return {"message" : response.data.error}
     }
 
-    const response2 = await axios.post(`${process.env.BASE_URL}/api/user/login`,{
+    const response2 = await axios.post("/api/user/login",{
         username, password
     })
 
@@ -31,7 +31,7 @@ export async function signin(username:string, password:string){
     // set JWTtoken
     const secretJWK ={
         kty:'oct',
-        k:process.env.JOSE_SECRET
+        k:process.env.NEXT_PUBLIC_JOSE_SECRET
     }
     const secretKey = await importJWK(secretJWK, 'HS256')
     const token = await new SignJWT({userId})
