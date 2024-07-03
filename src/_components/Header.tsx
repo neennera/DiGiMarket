@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { headers } from 'next/headers';
 import axios from 'axios';
 import Image from 'next/image';
+import { MobileLink } from './conponents/MobileLink';
 
 export default async function Header() {
   const headerRequest = headers();
   const headerId = headerRequest.get('userId');
-
   let username = 'Login';
   try {
     var userId = JSON.parse(headerId ? headerId : '');
@@ -35,27 +35,28 @@ export default async function Header() {
             <p>DiGi Market</p>
           </div>
         </Link>
-        <div className='flex flex-row space-x-5 max-sm:hidden'>
-          <Link href='/shop'>
-            <p>Shops</p>
-          </Link>
-
-          <Link href='/about'>
-            <p>About</p>
-          </Link>
-          <Link href='/cart'>
-            <p>My Cart</p>
-          </Link>
-          <Link href='/user'>
-            <p className='font-bold'>{username}</p>
-          </Link>
-        </div>
-        <div className='hidden space-y-0.5 max-sm:block'>
-          <div className='h-[4px] w-[20px] rounded-xl bg-slate-300'></div>
-          <div className='h-[4px] w-[20px] rounded-xl bg-slate-300'></div>
-          <div className='h-[4px] w-[20px] rounded-xl bg-slate-300'></div>
-        </div>
+        <WebsiteLink username={username} />
+        <MobileLink username={username} />
       </div>
     </nav>
   );
 }
+
+const WebsiteLink = (props: { username: string }) => {
+  return (
+    <div className='flex flex-row space-x-5 max-sm:hidden'>
+      <Link href='/shop'>
+        <p>Shops</p>
+      </Link>
+      <Link href='/about'>
+        <p>About</p>
+      </Link>
+      <Link href='/cart'>
+        <p>My Cart</p>
+      </Link>
+      <Link href='/user'>
+        <p className='font-bold'>{props.username}</p>
+      </Link>
+    </div>
+  );
+};
