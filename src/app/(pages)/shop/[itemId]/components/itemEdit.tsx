@@ -25,13 +25,16 @@ export default function ItemEdit({
     e.preventDefault();
 
     try {
-      const res = await axios.put(`/api/products/${item.id}`, {
-        name,
-        price: Number(price),
-        description: desc,
-        userId,
-        categoryId: category,
-      });
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${item.id}`,
+        {
+          name,
+          price: Number(price),
+          description: desc,
+          userId,
+          categoryId: category,
+        }
+      );
 
       setIsEdit(false);
     } catch (error) {
@@ -43,9 +46,12 @@ export default function ItemEdit({
     e.preventDefault();
 
     try {
-      const res = await axios.delete(`/api/products/${item.id}`, {
-        data: { userId },
-      });
+      const res = await axios.delete(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${item.id}`,
+        {
+          data: { userId },
+        }
+      );
 
       router.push('/shop');
     } catch (error) {

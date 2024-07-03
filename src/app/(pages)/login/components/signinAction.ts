@@ -9,9 +9,12 @@ export async function signin(username:string, password:string){
     if(username === "" || password === ""){
         return {"message" : "username and password is require"}
     }
+
+    console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+    
     
     // fetch login API    
-    const response = await axios.post("/api/user",{
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,{
         username, password
     })
 
@@ -19,7 +22,7 @@ export async function signin(username:string, password:string){
         return {"message" : response.data.error}
     }
 
-    const response2 = await axios.post("/api/user/login",{
+    const response2 = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/login`,{
         username, password
     })
 

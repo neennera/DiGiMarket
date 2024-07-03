@@ -11,7 +11,9 @@ export default async function Header() {
   let username = 'Login';
   try {
     var userId = JSON.parse(headerId ? headerId : '');
-    const res = await axios.get(`/api/user/${userId.userId}`);
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
+    );
     const user = res.data.data;
     username = `Hi, ${user.username}`;
   } catch (error: unknown) {

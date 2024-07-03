@@ -47,7 +47,9 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     [itemCategory: string]: boolean;
   }>({});
   const getCategory = async () => {
-    const response = await axios.get('/api/category');
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+    );
     const categories: { [itemCategory: string]: boolean } = {};
 
     response.data.data.forEach((item: any, index: string) => {

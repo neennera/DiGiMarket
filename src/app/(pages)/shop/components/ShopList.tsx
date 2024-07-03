@@ -19,7 +19,9 @@ export default function ShopList() {
   const [loading, setLoading] = useState(true);
   const initItems = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
+      );
       setItems(response.data.data);
     } catch (error) {
       console.log(error);
@@ -44,11 +46,14 @@ export default function ShopList() {
       categoryList.map((item) => {
         categoryFilterId.push(categoryDisplay.categoryId[item]);
       });
-      const response = await axios.post('/api/products/search', {
-        searchText,
-        categoryFilter: categoryFilterId,
-        sortBy,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/search`,
+        {
+          searchText,
+          categoryFilter: categoryFilterId,
+          sortBy,
+        }
+      );
 
       setItems(response.data.data);
     } catch (error) {
