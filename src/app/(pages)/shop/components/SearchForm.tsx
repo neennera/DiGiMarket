@@ -21,7 +21,7 @@ export default function SearchForm() {
           }}
         />
         <button
-          className='h-[100%] rounded-md bg-primary-dark px-3 py-1 font-semibold text-white'
+          className='h-[100%] rounded-md bg-primary-dark px-1 py-1 font-semibold text-white sm:px-3'
           onClick={(e) => {
             e.preventDefault();
             setSearchText(searchWord);
@@ -35,7 +35,7 @@ export default function SearchForm() {
         <p>sort by :</p>
         <select
           name='sortBy'
-          className='h-[80%] rounded-lg px-3 text-black'
+          className='h-[80%] rounded-lg px-3 text-black max-sm:text-sm'
           onChange={handleSortChange}
         >
           <option value='relavance'>Relavance</option>

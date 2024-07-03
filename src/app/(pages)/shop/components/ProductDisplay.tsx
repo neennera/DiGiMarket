@@ -16,6 +16,12 @@ interface itemSchema {
 export default function ProductDisplay({ item }: { item: itemSchema }) {
   const { categoryDisplay } = useSearchContext();
 
+  const itemId = item.id || '0';
+  const itemSrc =
+    categoryDisplay.categoryImage[
+      categoryDisplay.categoryName[item.categoryId]
+    ] || '/productsImage/noCategory_mock.webp';
+
   return (
     <>
       <div className='grid-col-1 md:grid-col-3 grid w-full gap-5 transition-all hover:scale-110 sm:grid-cols-2 xl:grid-cols-4'>
@@ -26,11 +32,7 @@ export default function ProductDisplay({ item }: { item: itemSchema }) {
                 width={400}
                 height={400}
                 alt='product image'
-                src={
-                  categoryDisplay.categoryImage[
-                    categoryDisplay.categoryName[item.categoryId]
-                  ]
-                }
+                src={itemSrc}
                 className='h-full object-cover'
                 priority={true}
               ></Image>
