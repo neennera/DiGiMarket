@@ -11,7 +11,7 @@ export async function signin(username:string, password:string){
     }
     
     // fetch login API    
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,{
+    const response = await axios.post("/api/user",{
         username, password
     })
 
@@ -19,7 +19,7 @@ export async function signin(username:string, password:string){
         return {"message" : response.data.error}
     }
 
-    const response2 = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/login`,{
+    const response2 = await axios.post("/api/user/login",{
         username, password
     })
 

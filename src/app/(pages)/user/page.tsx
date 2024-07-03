@@ -19,9 +19,7 @@ export default async function Page() {
   const headerId = headerRequest.get('userId');
   var userId = JSON.parse(headerId ? headerId : '');
 
-  const res = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId.userId}`
-  );
+  const res = await axios.get(`/api/user/${userId.userId}`);
   const user = res.data.data;
 
   return (
