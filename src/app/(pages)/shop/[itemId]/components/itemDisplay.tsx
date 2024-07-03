@@ -13,6 +13,11 @@ const formatter = new Intl.NumberFormat('en-US', {
 export default function ItemDisplay() {
   const item = useContext(ItemContext);
   const { categoryDisplay } = useSearchContext();
+
+  const itemSrc =
+    categoryDisplay.categoryImage[
+      categoryDisplay.categoryName[item.categoryId]
+    ] || '/productsImage/noCategory_mock.webp';
   return (
     <div className='flex flex-col space-y-3 px-5 py-3'>
       <h1 className='text-3xl font-bold'>{item?.name}</h1>
@@ -22,7 +27,7 @@ export default function ItemDisplay() {
             width={400}
             height={400}
             alt='product image'
-            src={categoryDisplay.categoryImage[Number(item.categoryId)]}
+            src={itemSrc}
             className='h-full w-auto object-fill'
             priority={true}
           ></Image>

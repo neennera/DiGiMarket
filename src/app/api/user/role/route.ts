@@ -9,7 +9,7 @@ export async function POST(request: Request){
        
         const newUser = await prisma.user.update({
             where : {
-                id: Number(userId)
+                id: userId
             },
             data : {
                 role

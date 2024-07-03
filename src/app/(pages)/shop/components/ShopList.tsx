@@ -4,13 +4,14 @@ import axios from 'axios';
 import Loading from '@/_components/Loading';
 import ProductDisplay from './ProductDisplay';
 import { categoryDisplay, useSearchContext } from './SearchContext';
+
 interface itemSchema {
   id: number;
   name: string;
   price: number;
   description: string;
   createdAt: Date;
-  categoryId: number;
+  categoryId: string;
 }
 
 export default function ShopList() {
@@ -19,7 +20,9 @@ export default function ShopList() {
   const [loading, setLoading] = useState(true);
   const initItems = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`
+      );
       setItems(response.data.data);
     } catch (error) {
       console.log(error);
@@ -40,15 +43,19 @@ export default function ShopList() {
       const categoryList = Object.keys(categoryFilter).filter(
         (key) => categoryFilter[key]
       );
-      const categoryFilterId: number[] = [];
+      const categoryFilterId: string[] = [];
       categoryList.map((item) => {
         categoryFilterId.push(categoryDisplay.categoryId[item]);
       });
-      const response = await axios.post('/api/products/search', {
-        searchText,
-        categoryFilter: categoryFilterId,
-        sortBy,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/search`,
+        {
+          searchText,
+          categoryFilter: categoryFilterId,
+          sortBy,
+        }
+      );
+
       setItems(response.data.data);
     } catch (error) {
       console.log(error);
@@ -58,10 +65,18 @@ export default function ShopList() {
   useEffect(() => {
     handleSearch();
   }, [searchText, categoryFilter, sortBy]);
+
+  if (loading || items === undefined) {
+    return (
+      <>
+        <Loading />
+      </>
+    );
+  }
+
   return (
     <>
-      {loading && <Loading />}
-      {items.length == 0 && !loading && (
+      {items.length === 0 && (
         <div className='flex w-full flex-col items-center justify-center space-y-3 pt-8'>
           <p className='text-2xl font-semibold'> Sorry, your item not found</p>
           <p className='text-xl'> try to use another keyword?</p>

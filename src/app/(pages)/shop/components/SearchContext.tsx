@@ -9,10 +9,10 @@ import React, {
 import axios from 'axios';
 
 interface CategoryDisplay {
-  categoryColor: { [key: number]: string };
-  categoryName: { [key: number]: string };
-  categoryImage: { [key: number]: string };
-  categoryId: { [key: string]: number };
+  categoryColor: { [key: string]: string };
+  categoryName: { [key: string]: string };
+  categoryImage: { [key: string]: string };
+  categoryId: { [key: string]: string };
 }
 interface SearchContextType {
   searchText: string;
@@ -33,10 +33,10 @@ export const categoryDisplay: CategoryDisplay = {
   categoryName: {},
   categoryId: {},
   categoryImage: {
-    0: '/productsImage/noCategory_mock.webp',
-    1: '/productsImage/postit_mock.jpg',
-    2: '/productsImage/planner_mock.jpg',
-    3: '/productsImage/sticker_mock.png',
+    noCategory: '/productsImage/noCategory_mock.webp',
+    postit: '/productsImage/postit_mock.jpg',
+    planner: '/productsImage/planner_mock.jpg',
+    sticker: '/productsImage/sticker_mock.png',
   },
 };
 // Create the provider component
@@ -47,14 +47,16 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     [itemCategory: string]: boolean;
   }>({});
   const getCategory = async () => {
-    const response = await axios.get('/api/category');
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+    );
     const categories: { [itemCategory: string]: boolean } = {};
 
-    response.data.data.forEach((item: any, index: number) => {
+    response.data.data.forEach((item: any, index: string) => {
       categories[item.itemCategory] = true;
-      categoryDisplay.categoryColor[index] = item.color;
-      categoryDisplay.categoryName[index] = item.itemCategory;
-      categoryDisplay.categoryId[item.itemCategory] = index;
+      categoryDisplay.categoryColor[item.id] = item.color;
+      categoryDisplay.categoryName[item.id] = item.itemCategory;
+      categoryDisplay.categoryId[item.itemCategory] = item.id;
     });
     setCategoryFilter(categories);
   };

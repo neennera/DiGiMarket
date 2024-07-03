@@ -11,13 +11,15 @@ import { SearchProvider } from '../components/SearchContext';
 import Link from 'next/link';
 import RecommendItem from './components/RecommendItem';
 
-export default async function Page({ params }: { params: { itemId: string } }) {
+export default function Page({ params }: { params: { itemId: string } }) {
   let [item, setItem] = useState<itemSchema>(defaultItem);
   const [isEdit, setIsEdit] = useState(false);
 
   const initItem = async () => {
     try {
-      const response = await axios.get(`/api/products/${params.itemId}`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.itemId}`
+      );
       setItem(response.data.data);
     } catch (error: unknown) {
       console.log(error);
@@ -54,7 +56,7 @@ export default async function Page({ params }: { params: { itemId: string } }) {
                 <EditButton
                   isEdit={isEdit}
                   setIsEdit={setIsEdit}
-                  itemId={params.itemId}
+                  itemId={item.id}
                 />
               </div>
             </div>

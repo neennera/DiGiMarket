@@ -23,7 +23,9 @@ export default function SideBar() {
 
   const initItems = async () => {
     try {
-      const response2 = await axios.get('/api/category');
+      const response2 = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+      );
       const newCategory: { [key: string]: string } = {};
       response2.data.data.forEach((item: categorySchema) => {
         newCategory[item.itemCategory] = item.color;

@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 
 export async function PUT(request: Request,  { params }: { params: { id: string } }){
     try{
-        const id = Number(params.id)    
+        const id = params.id  
 
        const {
             itemCategory, color
