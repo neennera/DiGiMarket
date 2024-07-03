@@ -6,7 +6,7 @@ export async function getUserId()  {
     
     const secretJWK ={
         kty:'oct',
-        k:process.env.NEXT_PUBLIC_JOSE_SECRET
+        k:process.env.JOSE_SECRET
     }
 
     try{

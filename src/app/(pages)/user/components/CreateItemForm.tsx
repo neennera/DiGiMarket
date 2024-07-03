@@ -18,16 +18,13 @@ const CreateItemForm = (params: { userId: string }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products`,
-        {
-          name,
-          price: Number(price),
-          description: desc,
-          userId: params.userId,
-          categoryId: category,
-        }
-      );
+      const res = await axios.post(`/api/products`, {
+        name,
+        price: Number(price),
+        description: desc,
+        userId: params.userId,
+        categoryId: category,
+      });
 
       if (res.data.message == 'success') {
         router.push('/shop');

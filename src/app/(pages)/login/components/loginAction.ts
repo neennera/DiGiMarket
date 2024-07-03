@@ -23,7 +23,7 @@ export async function login(username:string, password:string){
     // set JWTtoken
     const secretJWK ={
         kty:'oct',
-        k:process.env.NEXT_PUBLIC_JOSE_SECRET
+        k:process.env.JOSE_SECRET
     }
     const secretKey = await importJWK(secretJWK, 'HS256')
     const token = await new SignJWT({userId})

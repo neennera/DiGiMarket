@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
     
     const secretJWK ={
         kty:'oct',
-        k:process.env.NEXT_PUBLIC_JOSE_SECRET
+        k:process.env.JOSE_SECRET
     }
     
     if (url.pathname === '/login') {
