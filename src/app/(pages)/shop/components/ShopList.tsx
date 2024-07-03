@@ -49,9 +49,8 @@ export default function ShopList() {
         categoryFilter: categoryFilterId,
         sortBy,
       });
-      console.log(response.data);
 
-      // setItems(response.data.data);
+      setItems(response.data.data);
     } catch (error) {
       console.log(error);
       setItems([]);
