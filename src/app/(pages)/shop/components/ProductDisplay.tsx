@@ -10,7 +10,7 @@ interface itemSchema {
   price: number;
   description: string;
   createdAt: Date;
-  categoryId: number;
+  categoryId: string;
 }
 
 export default function ProductDisplay({ item }: { item: itemSchema }) {
@@ -26,7 +26,11 @@ export default function ProductDisplay({ item }: { item: itemSchema }) {
                 width={400}
                 height={400}
                 alt='product image'
-                src={categoryDisplay.categoryImage[Number(item.categoryId)]}
+                src={
+                  categoryDisplay.categoryImage[
+                    categoryDisplay.categoryName[item.categoryId]
+                  ]
+                }
                 className='h-full object-cover'
                 priority={true}
               ></Image>
@@ -37,7 +41,7 @@ export default function ProductDisplay({ item }: { item: itemSchema }) {
                     categoryDisplay.categoryColor[item.categoryId],
                 }}
               >
-                <p>{categoryDisplay.categoryName[Number(item.categoryId)]}</p>
+                <p>{categoryDisplay.categoryName[item.categoryId]}</p>
               </div>
             </div>
             <div className='flex flex-row justify-between'>

@@ -8,10 +8,13 @@ export default function RegisterPromote() {
   const handleSwitchRole = async (role: string) => {
     const userId = await getUserId();
     try {
-      const res = await axios.post(`/api/user/role`, {
-        userId,
-        role,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/role`,
+        {
+          userId,
+          role,
+        }
+      );
       window.location.reload();
     } catch (error: unknown) {
       console.log(error);

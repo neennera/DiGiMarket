@@ -17,7 +17,9 @@ export default async function Page({ params }: { params: { itemId: string } }) {
 
   const initItem = async () => {
     try {
-      const response = await axios.get(`/api/products/${params.itemId}`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.itemId}`
+      );
       setItem(response.data.data);
     } catch (error: unknown) {
       console.log(error);

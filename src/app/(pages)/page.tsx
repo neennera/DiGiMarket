@@ -109,7 +109,7 @@ export default function Home() {
                 alt='join us'
                 width={400}
                 height={300}
-                className='h-auto rounded-lg'
+                className='h-auto w-auto rounded-lg'
               />
             </div>
           </div>

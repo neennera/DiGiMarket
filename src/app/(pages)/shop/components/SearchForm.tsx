@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchContext } from './SearchContext';
 
-function submitForm(searchWord: string) {
-  console.log(searchWord);
-}
-
 export default function SearchForm() {
   const { setSearchText, sortBy, setSortBy } = useSearchContext();
   const [searchWord, setSearchWord] = useState('');

@@ -11,7 +11,7 @@ export async function login(username:string, password:string){
     }
     
     // fetch login API    
-    const response = await axios.post(`${process.env.BASE_URL}/api/user/login`,{
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/login`,{
         username, password
     })
 

@@ -10,7 +10,7 @@ const CreateItemForm = (params: { userId: string }) => {
 
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('noCategory');
 
   const [price, setPrice] = useState(0);
   const router = useRouter();
@@ -24,8 +24,8 @@ const CreateItemForm = (params: { userId: string }) => {
           name,
           price: Number(price),
           description: desc,
-          userId: Number(params.userId),
-          categoryId: Number(category),
+          userId: params.userId,
+          categoryId: category,
         }
       );
 
@@ -84,10 +84,13 @@ const CreateItemForm = (params: { userId: string }) => {
             className='mt-1 block h-full w-full rounded-md py-1 pl-2 text-black'
             onChange={handleChangeCat}
           >
+            <option value='' disabled selected>
+              Select category
+            </option>
             {Object.entries(categoryDisplay.categoryName).map(
               ([itemCategory, color], index) => (
                 <option value={itemCategory} key={index}>
-                  {categoryDisplay.categoryName[Number(itemCategory)]}
+                  {categoryDisplay.categoryName[itemCategory]}
                 </option>
               )
             )}
