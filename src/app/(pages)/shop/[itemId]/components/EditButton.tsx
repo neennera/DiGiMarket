@@ -1,17 +1,7 @@
 'use client';
 import { getUserId } from '@/_assets/user';
-import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { ItemContext } from './ItemContext';
-
-interface itemSchema {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  createdAt: Date;
-  userId: number;
-}
 
 interface paramsSchema {
   isEdit: boolean;
