@@ -11,7 +11,7 @@ import { SearchProvider } from '../components/SearchContext';
 import Link from 'next/link';
 import RecommendItem from './components/RecommendItem';
 
-export default async function Page({ params }: { params: { itemId: string } }) {
+export default function Page({ params }: { params: { itemId: string } }) {
   let [item, setItem] = useState<itemSchema>(defaultItem);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: { itemId: string } }) {
                 <EditButton
                   isEdit={isEdit}
                   setIsEdit={setIsEdit}
-                  itemId={params.itemId}
+                  itemId={item.id}
                 />
               </div>
             </div>

@@ -12,14 +12,13 @@ export async function middleware(request: NextRequest) {
     
     const secretJWK ={
         kty:'oct',
-        k:process.env.JOSE_SECRET
+        k:process.env.NEXT_PUBLIC_JOSE_SECRET
     }
     
     if (url.pathname === '/login') {
       if(userToken != undefined){
         try {
         const secretKey = await importJWK(secretJWK, 'HS256');
-        await jwtVerify(userToken.value, secretKey);
         return NextResponse.redirect(new URL("/", request.url));
       } catch (error) {
         return NextResponse.next();

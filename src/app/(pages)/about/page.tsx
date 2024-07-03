@@ -8,7 +8,7 @@ import Timeline from './conponents/Timeline';
 export default function Page() {
   return (
     <main className='flex w-full items-center justify-center'>
-      <section className='w-[90%] rounded-xl border border-primary bg-black bg-opacity-40 px-8 py-5'>
+      <section className='w-full rounded-xl border border-primary bg-black bg-opacity-40 px-8 py-5 sm:w-[90%]'>
         <h1 className='animate-fade-in mb-6 text-4xl font-bold'>
           Digital Product Marketplace
         </h1>
